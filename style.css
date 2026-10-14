@@ -1,0 +1,929 @@
+/* ==========================================================================
+   LEYA NILSSON – DIGITAL MARKETING SPECIALIST
+   Designsystem & Stilguide
+   Centrala färger: Beige & Mörkblå (Editorial Luxury Aesthetic)
+   Inspirerad av: Bilaga 1 (Atelier Soleil), Bilaga 2 & Bilaga 3 (Celeste Noir)
+   ========================================================================== */
+
+/* 1 · Reset & Box-modell */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2 · Variabler & Färgpalett */
+:root {
+    /* Dominerande mörkblå nyanser */
+    --bla-djup: #0a1728;
+    --bla-marin: #0f223d;
+    --bla-kort: #152d4f;
+    --bla-hover: #1c3c69;
+    --bla-gradient: linear-gradient(135deg, #0a1728 0%, #102644 100%);
+
+    /* Dominerande beige & sand nyanser */
+    --beige-bg: #f7f4ee;
+    --beige-kort: #efe9df;
+    --beige-accent: #e2dbce;
+    --beige-kant: #ddd5c7;
+    --beige-ljus: #fcfbf9;
+
+    /* Sofistikerade komplement och accenter */
+    --accent-guld: #c5a676;
+    --accent-guld-ljus: #dfc8a2;
+
+    /* Textfärger */
+    --text-mork: #0a1728;
+    --text-mork-dampad: #46556b;
+    --text-ljus: #faf8f5;
+    --text-ljus-dampad: #c2cfdf;
+
+    /* Typografi */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+    /* Mått & Effekter */
+    --radie-liten: 6px;
+    --radie-medium: 14px;
+    --radie-stor: 24px;
+    --skugga-mjuk: 0 10px 30px rgba(10, 23, 40, 0.06);
+    --skugga-kort: 0 14px 35px rgba(10, 23, 40, 0.09);
+    --skugga-djup: 0 20px 45px rgba(10, 23, 40, 0.22);
+    --transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 3 · Grundläggande styling */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--beige-bg);
+    color: var(--text-mork);
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+/* Typografiska regler */
+h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--bla-djup);
+    line-height: 1.2;
+}
+
+p {
+    color: var(--text-mork-dampad);
+    font-size: 1.05rem;
+}
+
+.kursiv-accent {
+    font-style: italic;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    color: var(--bla-marin);
+}
+
+.overrubrik {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-guld);
+    margin-bottom: 0.75rem;
+}
+
+.overrubrik.ljus-text {
+    color: var(--accent-guld-ljus);
+}
+
+/* ==========================================================================
+   4 · Sidhuvud & Navigation (Editorial Atelier Style)
+   ========================================================================== */
+.sidhuvud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2.5rem;
+    background-color: rgba(247, 244, 238, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--beige-kant);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.varumarke {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-namn {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--bla-djup);
+}
+
+.roll {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mork-dampad);
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--bla-djup);
+    position: relative;
+    padding-bottom: 4px;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1.5px;
+    background-color: var(--bla-djup);
+    transition: var(--transition);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.header-kontakt-knapp {
+    display: block;
+}
+
+/* Knappar */
+.knapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radie-stor);
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.knapp-liten {
+    padding: 0.55rem 1.25rem;
+    font-size: 0.85rem;
+    background-color: var(--bla-djup);
+    color: var(--beige-bg);
+}
+
+.knapp-liten:hover {
+    background-color: var(--bla-hover);
+    transform: translateY(-2px);
+}
+
+.knapp-primar {
+    background-color: var(--bla-djup);
+    color: var(--beige-bg);
+    box-shadow: 0 6px 18px rgba(10, 23, 40, 0.18);
+}
+
+.knapp-primar:hover {
+    background-color: var(--bla-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(10, 23, 40, 0.25);
+}
+
+.knapp-sekundar {
+    background-color: transparent;
+    color: var(--bla-djup);
+    border: 1.5px solid var(--bla-djup);
+}
+
+.knapp-sekundar:hover {
+    background-color: var(--bla-djup);
+    color: var(--beige-bg);
+    transform: translateY(-2px);
+}
+
+.knapp-text {
+    background: none;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--bla-djup);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 0;
+    text-align: left;
+}
+
+.knapp-text:hover {
+    color: var(--bla-hover);
+}
+
+/* ==========================================================================
+   5 · Hero-sektion (Bilaga 1 Editorial känsla + Bilaga 3)
+   ========================================================================== */
+.hero {
+    max-width: 78rem;
+    margin: 0 auto;
+    padding: 4.5rem 2rem 5rem 2rem;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.hero-innehall {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background-color: var(--beige-kort);
+    border: 1px solid var(--beige-kant);
+    border-radius: var(--radie-stor);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--bla-djup);
+    margin-bottom: 1.5rem;
+    width: fit-content;
+}
+
+.tag-prick {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-guld);
+    display: inline-block;
+}
+
+.hero-rubrik {
+    font-size: 3.4rem;
+    line-height: 1.12;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+}
+
+.hero-ingress {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2.25rem;
+    color: var(--text-mork-dampad);
+    max-width: 48ch;
+}
+
+.hero-knappar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Polaroid/Editorial Bildram från Bilaga 2 */
+.hero-bild-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-polaroid {
+    background-color: var(--beige-ljus);
+    padding: 1.25rem 1.25rem 1.75rem 1.25rem;
+    border-radius: var(--radie-medium);
+    border: 1px solid var(--beige-kant);
+    box-shadow: var(--skugga-kort);
+    transform: rotate(1.5deg);
+    transition: var(--transition);
+    max-width: 360px;
+}
+
+.hero-polaroid:hover {
+    transform: rotate(0deg) translateY(-5px);
+    box-shadow: var(--skugga-djup);
+}
+
+.hero-polaroid img {
+    border-radius: var(--radie-liten);
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.polaroid-etikett {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.polaroid-namn {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--bla-djup);
+}
+
+.polaroid-titel {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-mork-dampad);
+}
+
+/* ==========================================================================
+   6 · Ticker-band / Rullande Ribbon (Bilaga 2 & Bilaga 3)
+   ========================================================================== */
+.ticker-band {
+    background: var(--bla-djup);
+    color: var(--beige-bg);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 1.15rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ticker-innehall {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.75rem;
+    animation: ticker 32s linear infinite;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.delare {
+    color: var(--accent-guld);
+    font-size: 0.75rem;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ==========================================================================
+   7 · Kompetenser – Central del, högt upp (Bilaga 3 mörka ämnesblock)
+   ========================================================================== */
+.sektion-kompetenser {
+    background: var(--bla-djup);
+    color: var(--text-ljus);
+    padding: 6rem 2rem;
+}
+
+.sektion-intro {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto 3.5rem auto;
+}
+
+.sektion-intro.morkt-tema h2 {
+    color: var(--text-ljus);
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+}
+
+.sektion-intro.morkt-tema .intro-beskrivning {
+    color: var(--text-ljus-dampad);
+    font-size: 1.1rem;
+}
+
+.sektion-intro h2 {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+}
+
+.kompetens-rutnat {
+    max-width: 78rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.kompetens-kort {
+    background: var(--bla-marin);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radie-medium);
+    padding: 2.25rem 2rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.kompetens-kort::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-guld);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.kompetens-kort:hover {
+    background: var(--bla-kort);
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.kompetens-kort:hover::before {
+    opacity: 1;
+}
+
+.kompetens-nummer {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--accent-guld);
+    margin-bottom: 1rem;
+}
+
+.kompetens-kort h3 {
+    color: var(--text-ljus);
+    font-size: 1.35rem;
+    margin-bottom: 0.85rem;
+    font-weight: 600;
+}
+
+.kompetens-kort p {
+    color: var(--text-ljus-dampad);
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   8 · Om mig & Värdeerbjudande (Bilaga 3 struktur med 01, 02, 03)
+   ========================================================================== */
+.sektion-om {
+    background-color: var(--beige-bg);
+    padding: 6.5rem 2rem;
+    border-bottom: 1px solid var(--beige-kant);
+}
+
+.om-split {
+    max-width: 78rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4.5rem;
+    align-items: center;
+}
+
+.om-textkolumn h2 {
+    font-size: 2.6rem;
+    margin-bottom: 1.25rem;
+}
+
+.om-lead {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--bla-djup);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.varde-lista {
+    margin: 2.25rem 0 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.varde-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--beige-kant);
+}
+
+.varde-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.varde-siffra {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--bla-marin);
+    line-height: 1;
+    padding-top: 0.2rem;
+}
+
+.varde-item h4 {
+    font-size: 1.15rem;
+    margin-bottom: 0.35rem;
+    color: var(--bla-djup);
+}
+
+.varde-item p {
+    font-size: 0.96rem;
+    margin: 0;
+}
+
+/* Fällbar bakgrundssektion via script.js */
+.om-mer-detaljer {
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    background-color: var(--beige-kort);
+    border-left: 3px solid var(--bla-marin);
+    border-radius: var(--radie-liten);
+    transition: var(--transition);
+}
+
+.om-mer-detaljer.gomd {
+    display: none;
+}
+
+.om-kort-ram {
+    background-color: var(--beige-ljus);
+    padding: 1.25rem;
+    border-radius: var(--radie-medium);
+    border: 1px solid var(--beige-kant);
+    box-shadow: var(--skugga-kort);
+}
+
+.om-portratt {
+    border-radius: var(--radie-liten);
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.om-citat {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    border-top: 1px solid var(--beige-kant);
+}
+
+.om-citat p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--bla-djup);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.om-citat span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-mork-dampad);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   9 · Meriter & Nyckeltal (Social proof / Stats bar från Bilaga 3)
+   ========================================================================== */
+.sektion-meriter {
+    background-color: var(--bla-marin);
+    color: var(--text-ljus);
+    padding: 3.5rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.meriter-rutnat {
+    max-width: 78rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    text-align: center;
+}
+
+.merit-ruta {
+    padding: 1rem;
+}
+
+.merit-siffra {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--accent-guld);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.merit-etikett {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-ljus);
+    margin-bottom: 0.35rem;
+}
+
+.merit-text {
+    font-size: 0.9rem;
+    color: var(--text-ljus-dampad);
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   10 · Erfarenhet & Case (Bilaga 2 & Bilaga 3 The Episodes rutnät)
+   ========================================================================== */
+.sektion-projekt {
+    padding: 6.5rem 2rem;
+    max-width: 78rem;
+    margin: 0 auto;
+}
+
+.rutnat {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.kort {
+    background-color: var(--beige-kort);
+    border: 1px solid var(--beige-kant);
+    border-radius: var(--radie-medium);
+    padding: 2.25rem 2rem;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.kort:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--skugga-kort);
+    background-color: var(--beige-ljus);
+    border-color: var(--bla-marin);
+}
+
+.kort-tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--bla-marin);
+    margin-bottom: 0.75rem;
+}
+
+.kort h3 {
+    font-size: 1.45rem;
+    margin-bottom: 0.35rem;
+    color: var(--bla-djup);
+}
+
+.kort-roll {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent-guld);
+    margin-bottom: 1rem;
+}
+
+.kort p {
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   11 · Kontaktsektion (Call to Action från Bilaga 1, 2 & 3)
+   ========================================================================== */
+.sektion-kontakt {
+    background: var(--bla-djup);
+    color: var(--text-ljus);
+    padding: 6.5rem 2rem;
+}
+
+.kontakt-lada {
+    max-width: 60rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.kontakt-lada h2 {
+    color: var(--text-ljus);
+    font-size: 2.8rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+}
+
+.kontakt-ingress {
+    color: var(--text-ljus-dampad);
+    font-size: 1.2rem;
+    max-width: 48ch;
+    margin: 0 auto 3.5rem auto;
+}
+
+.kontakt-detaljer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.kontakt-kort {
+    background: var(--bla-marin);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radie-medium);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    transition: var(--transition);
+}
+
+.kontakt-kort:hover {
+    background: var(--bla-kort);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-4px);
+}
+
+.kontakt-rubrik {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent-guld);
+}
+
+.kontakt-varde {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--text-ljus);
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.kontakt-varde:hover {
+    color: var(--accent-guld-ljus);
+    text-decoration: underline;
+}
+
+.knapp-kopiera {
+    margin-top: 0.5rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--text-ljus-dampad);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radie-stor);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.knapp-kopiera:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text-ljus);
+    border-color: var(--accent-guld);
+}
+
+/* ==========================================================================
+   12 · Sidfot
+   ========================================================================== */
+footer {
+    background: #060e18;
+    color: var(--text-ljus-dampad);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-innehall p {
+    font-size: 0.95rem;
+    color: var(--text-ljus-dampad);
+    margin: 0.25rem 0;
+}
+
+.footer-subtext {
+    font-size: 0.82rem !important;
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   13 · Responsiv Design (Media Queries)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .kompetens-rutnat {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .hero-innehall {
+        align-items: center;
+    }
+
+    .hero-rubrik {
+        font-size: 2.8rem;
+    }
+
+    .hero-knappar {
+        justify-content: center;
+    }
+
+    .om-split {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .om-kort-ram {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidhuvud {
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.25rem 1.5rem;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .header-kontakt-knapp {
+        display: none;
+    }
+
+    .kompetens-rutnat {
+        grid-template-columns: 1fr;
+    }
+
+    .meriter-rutnat {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .kontakt-detaljer {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-rubrik {
+        font-size: 2.25rem;
+    }
+
+    .kontakt-lada h2 {
+        font-size: 2rem;
+    }
+}
