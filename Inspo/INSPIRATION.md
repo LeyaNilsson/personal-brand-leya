@@ -1,21 +1,12 @@
-# Inspiration & Underlag från PDF:er & Screenshots
+# Underlag för Leya Nilssons Personliga Varumärke & Portfolio
 
-Filerna finns sparade lokalt:
-- [CV Leya Nilsson.pdf](file:///c:/Users/leyan/Desktop/Img/CV%20Leya%20Nilsson.pdf)
-- [Hjortviken ansokan.pdf](file:///c:/Users/leyan/Desktop/Img/Hjortviken%20ansokan.pdf)
-- [Bilaga 1 (Bilaga 1.png)](file:///c:/Users/leyan/Desktop/Img/Bilaga%201.png)
-- [Bilaga 2 (Bilaga 2.png)](file:///c:/Users/leyan/Desktop/Img/Bilaga%202.png)
-- [Bilaga 3 (Bilaga 3.png)](file:///c:/Users/leyan/Desktop/Img/Bilaga%203.png)
+## 1. Information från CV
 
----
-
-## 1. CV – Leya Nilsson
-
-**Roll / Titel:** Digital marketing specialist  
-**Kontaktuppgifter:**
-- **Telefon:** 073 982 22 83
-- **E-post:** leya@sandtex.se
-- **LinkedIn:** [linkedin.com/in/leyanilsson](https://linkedin.com/in/leyanilsson)
+**Namn:** Leya Nilsson  
+**Plats:** Mölnlycke / Göteborg  
+**Telefon:** 073 982 2283  
+**E-post:** leya@sandtex.se  
+**LinkedIn:** [linkedin.com/in/leyanilsson](https://linkedin.com/in/leyanilsson)  
 
 ### Sammanfattning / Om mig
 Kreativ och driven person med bakgrund inom ekonomi, entreprenörskap och ledarskap. Studerar till digital marketing specialist på IHM Business School och har erfarenhet av sociala medier, digitala verktyg, marknadsföring och att driva UF-företag. Van vid att ta ansvar, kommunicera med olika målgrupper och arbeta självständigt såväl som i team. Drivs av att utvecklas, lära mig nya saker och ta mig an nya utmaningar.
@@ -79,9 +70,7 @@ Leya Nilsson
 
 ## Bilaga 1
 
-![Bilaga 1](file:///c:/Users/leyan/Desktop/Img/Bilaga%201.png)
-
-*Bildfil:* [Bilaga 1.png](file:///c:/Users/leyan/Desktop/Img/Bilaga%201.png)
+![Bilaga 1](Bilaga%201.png)
 
 ### Innehåll & Layoutinspiration (Atelier Soleil)
 * **Sajt / Varumärke:** ATELIER SOLEIL
@@ -99,9 +88,7 @@ Leya Nilsson
 
 ## Bilaga 2
 
-![Bilaga 2](file:///c:/Users/leyan/Desktop/Img/Bilaga%202.png)
-
-*Bildfil:* [Bilaga 2.png](file:///c:/Users/leyan/Desktop/Img/Bilaga%202.png)
+![Bilaga 2](Bilaga%202.png)
 
 ### Innehåll & Layoutinspiration (Social Media Manager & Coaching Template)
 * **Koncept:** Anpassning av hemsidemall från Business Coach (*Kimberly Stone*) till Social Media Manager (*Jamie Winslet*).
@@ -124,9 +111,7 @@ Leya Nilsson
 
 ## Bilaga 3
 
-![Bilaga 3](file:///c:/Users/leyan/Desktop/Img/Bilaga%203.png)
-
-*Bildfil:* [Bilaga 3.png](file:///c:/Users/leyan/Desktop/Img/Bilaga%203.png)
+![Bilaga 3](Bilaga%203.png)
 
 ### Innehåll & Layoutinspiration (Celeste Noir – No Filter Marketing Podcast)
 * **Sajt / Varumärke:** CELESTE NOIR
