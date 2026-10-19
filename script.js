@@ -43,24 +43,41 @@ const hamburgare = document.getElementById("hamburgare");
 const mobilmeny = document.getElementById("mobilmeny");
 
 if (hamburgare && mobilmeny) {
-    hamburgare.addEventListener("click", () => {
-        const oppet = hamburgare.classList.toggle("aktiv");
-        mobilmeny.classList.toggle("oppet");
-        hamburgare.setAttribute("aria-expanded", oppet);
-        mobilmeny.setAttribute("aria-hidden", !oppet);
+    function sattMobilmeny(oppet, aterstallFokus = false) {
+        hamburgare.classList.toggle("aktiv", oppet);
+        mobilmeny.classList.toggle("oppet", oppet);
+        hamburgare.setAttribute("aria-expanded", String(oppet));
+        hamburgare.setAttribute("aria-label", oppet ? "Stäng meny" : "Öppna meny");
+        mobilmeny.setAttribute("aria-hidden", String(!oppet));
+        mobilmeny.inert = !oppet;
+        hamburgare.querySelector(".hamburgare-text").textContent = oppet ? "Stäng" : "Meny";
         document.body.style.overflow = oppet ? "hidden" : "";
+
+        if (aterstallFokus) hamburgare.focus();
+    }
+
+    hamburgare.addEventListener("click", () => {
+        sattMobilmeny(!hamburgare.classList.contains("aktiv"));
     });
 
-    // Stäng menyn när en länk klickas
+    // Stäng menyn när en länk väljs.
     document.querySelectorAll(".mobilmeny-lank").forEach(lank => {
         lank.addEventListener("click", () => {
-            hamburgare.classList.remove("aktiv");
-            mobilmeny.classList.remove("oppet");
-            hamburgare.setAttribute("aria-expanded", "false");
-            mobilmeny.setAttribute("aria-hidden", "true");
-            document.body.style.overflow = "";
+            sattMobilmeny(false);
         });
     });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && hamburgare.classList.contains("aktiv")) {
+            sattMobilmeny(false, true);
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 1100 && hamburgare.classList.contains("aktiv")) {
+            sattMobilmeny(false);
+        }
+    }, { passive: true });
 }
 // 2 · Stäng toppbanner
 const stangBanner = document.getElementById("stang-banner");

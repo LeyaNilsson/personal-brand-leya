@@ -61,14 +61,16 @@
                 </svg>
             </button>
             <a href="#kontakt" class="knapp knapp-outline" id="header-kontakt-knapp">Ta kontakt</a>
-            <button class="hamburgare" id="hamburgare" aria-label="Öppna meny" aria-expanded="false">
-                <span></span><span></span><span></span>
+            <button class="hamburgare" id="hamburgare" type="button" aria-label="Öppna meny"
+                aria-expanded="false" aria-controls="mobilmeny">
+                <span class="hamburgare-ikon" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span class="hamburgare-text">Meny</span>
             </button>
         </div>
     </header>
 
     <!-- MOBILMENY -->
-    <div class="mobilmeny" id="mobilmeny" aria-hidden="true">
+    <div class="mobilmeny" id="mobilmeny" aria-hidden="true" inert>
         <nav aria-label="Mobilmeny">
             <ul>
                 <li><a href="#om" class="mobilmeny-lank">Om mig</a></li>
