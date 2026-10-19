@@ -1563,49 +1563,77 @@ h3, h4, h5 {
 }
 .kontakt-formular-intro .kontakt-ingress { margin: 0; }
 
-/* HubSpot's new embed reads these button variables from the page root. */
+/* HubSpot's new embed reads these documented style variables from :root. */
 :root {
-    --hsf-button__font-family: var(--font-sans);
-    --hsf-button__font-size: 1.15rem;
-    --hsf-button__color: #faf9f7;
-    --hsf-button__background-color: #3e527a;
+    --hsf-global__font-family: var(--font-serif);
+    --hsf-global__font-size: 1rem;
+    --hsf-global__color: var(--text-mork);
+
+    --hsf-row__vertical-spacing: 1.1rem;
+    --hsf-module__vertical-spacing: .4rem;
+
+    --hsf-field-label__font-family: var(--font-serif);
+    --hsf-field-label__font-size: 1.1rem;
+    --hsf-field-label__color: var(--accent-damp);
+    --hsf-field-description__font-family: var(--font-serif);
+    --hsf-field-description__color: var(--text-medel);
+    --hsf-field-footer__font-family: var(--font-serif);
+    --hsf-field-footer__color: var(--text-medel);
+
+    --hsf-field-input__font-family: var(--font-serif);
+    --hsf-field-input__color: var(--text-mork);
+    --hsf-field-input__background-color: var(--bas);
+    --hsf-field-input__placeholder-color: var(--text-damp);
+    --hsf-field-input__border-color: var(--bas-kant);
+    --hsf-field-input__border-width: 1px;
+    --hsf-field-input__border-style: solid;
+    --hsf-field-input__border-radius: 3px;
+    --hsf-field-input__padding: .75rem 1rem;
+
+    --hsf-field-textarea__font-family: var(--font-serif);
+    --hsf-field-textarea__color: var(--text-mork);
+    --hsf-field-textarea__background-color: var(--bas);
+    --hsf-field-textarea__placeholder-color: var(--text-damp);
+    --hsf-field-textarea__border-color: var(--bas-kant);
+    --hsf-field-textarea__border-width: 1px;
+    --hsf-field-textarea__border-style: solid;
+    --hsf-field-textarea__border-radius: 3px;
+    --hsf-field-textarea__padding: .75rem 1rem;
+
+    --hsf-field-checkbox__background-color: var(--bas);
+    --hsf-field-checkbox__color: var(--text-mork);
+    --hsf-field-checkbox__border-color: var(--accent-damp);
+    --hsf-field-checkbox__border-width: 1px;
+    --hsf-field-checkbox__border-style: solid;
+    --hsf-field-checkbox__padding: .2rem;
+    --hsf-field-radio__background-color: var(--bas);
+    --hsf-field-radio__color: var(--text-mork);
+    --hsf-field-radio__border-color: var(--accent-damp);
+    --hsf-field-radio__border-width: 1px;
+    --hsf-field-radio__border-style: solid;
+    --hsf-field-radio__padding: .2rem;
+
+    --hsf-richtext__font-family: var(--font-serif);
+    --hsf-richtext__font-size: 1rem;
+    --hsf-richtext__color: var(--text-medel);
+    --hsf-heading__font-family: var(--font-serif);
+    --hsf-heading__color: var(--accent-damp);
+
+    --hsf-background__background-color: var(--bas);
+    --hsf-background__border-style: solid;
+    --hsf-background__border-color: var(--bas-kant);
+    --hsf-background__border-width: 0;
+    --hsf-background__border-radius: 0;
+    --hsf-background__padding: 0;
+
+    --hsf-button__font-family: var(--font-serif);
+    --hsf-button__font-size: 1.05rem;
+    --hsf-button__color: var(--bas);
+    --hsf-button__background-color: var(--accent);
     --hsf-button__background-image: none;
     --hsf-button__border-radius: 5px;
-    --hsf-button__padding: 24px 30px;
+    --hsf-button__padding: .85rem 1.5rem;
     --hsf-button__box-shadow: none;
-}
-
-.kontakt-formular .hs-form-frame .hs-submit input[type="submit"],
-.kontakt-formular .hs-form-frame button[type="submit"] {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: min(220px, 100%);
-    min-height: 70px;
-    padding: 24px 30px;
-    border: 0;
-    border-radius: 5px;
-    background: #3e527a;
-    color: #faf9f7;
-    font-family: var(--font-sans);
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: none;
-}
-
-.kontakt-formular .hs-form-frame .hs-submit input[type="submit"]:hover,
-.kontakt-formular .hs-form-frame button[type="submit"]:hover {
-    filter: brightness(.94);
-}
-
-.kontakt-formular .hs-form-frame .hs-submit input[type="submit"]:focus-visible,
-.kontakt-formular .hs-form-frame button[type="submit"]:focus-visible {
-    outline: 2px solid #3e527a;
-    outline-offset: 3px;
 }
 
 @media (max-width: 768px) {
@@ -1786,7 +1814,7 @@ h3, h4, h5 {
 .sektion-kompetenser {
     background-image:
         linear-gradient(rgba(250, 249, 247, .82), rgba(250, 249, 247, .82)),
-        url("img/kompetens-bakgrund.png");
+        url("img/kompetens-bakgrund.jpg");
     background-color: #faf9f7;
     background-size: cover;
     background-position: center;
@@ -1944,7 +1972,7 @@ html[data-theme="dark"] .sektion-kompetenser {
     color: var(--text-mork);
     background-image:
         linear-gradient(rgba(24, 35, 56, .88), rgba(24, 35, 56, .88)),
-        url("img/kompetens-bakgrund.png");
+        url("img/kompetens-bakgrund.jpg");
     background-color: var(--bas);
 }
 html[data-theme="dark"] .sektion-kompetenser .sektionrubrik,
