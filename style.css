@@ -2332,37 +2332,54 @@ main section[id] { scroll-margin-top: calc(var(--header-height) + 1rem); }
 
     .hamburgare {
         display: inline-flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: .55rem;
-        min-width: 44px;
-        min-height: 44px;
-        padding: .35rem;
+        gap: 0;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        padding: 0;
         color: #3e527a;
         border-radius: 3px;
+        transition: color .2s ease, background-color .2s ease;
     }
 
     .hamburgare-ikon {
         display: flex;
-        flex: 0 0 22px;
+        flex: 0 0 28px;
         flex-direction: column;
-        gap: 5px;
-        width: 22px;
+        justify-content: center;
+        gap: 6px;
+        width: 28px;
+    }
+
+    .hamburgare-ikon span {
+        width: 28px;
+        height: 2px;
+        background-color: currentColor;
+        transition: transform .22s ease, opacity .18s ease, background-color .2s ease;
+    }
+
+    .hamburgare.aktiv .hamburgare-ikon span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburgare.aktiv .hamburgare-ikon span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 
     .hamburgare-text {
-        display: inline;
-        width: auto;
-        height: auto;
-        color: currentColor;
-        background: transparent;
-        font-family: var(--font-sans);
-        font-size: .72rem;
-        font-weight: 500;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-        white-space: nowrap;
+        display: none;
+    }
+
+    .hamburgare:hover {
+        background-color: rgb(62 82 122 / 7%);
+    }
+
+    .hamburgare.aktiv {
+        background-color: rgb(62 82 122 / 9%);
     }
 
     .hamburgare:focus-visible {
@@ -2385,11 +2402,18 @@ main section[id] { scroll-margin-top: calc(var(--header-height) + 1rem); }
         display: flex;
         top: var(--header-height);
         padding: 1.5rem 1rem;
+        transition: opacity .24s ease, visibility .24s ease;
     }
 
     .mobilmeny nav {
         display: block;
         width: 100%;
+        transform: translateY(8px);
+        transition: transform .24s ease;
+    }
+
+    .mobilmeny.oppet nav {
+        transform: translateY(0);
     }
 
     .mobilmeny nav ul {
@@ -2404,6 +2428,11 @@ main section[id] { scroll-margin-top: calc(var(--header-height) + 1rem); }
         align-items: center;
         min-height: 44px;
         font-size: clamp(1.7rem, 7vw, 2.2rem);
+    }
+
+    .mobilmeny-lank:focus-visible {
+        outline: 2px solid #3e527a;
+        outline-offset: 5px;
     }
 
     #header-kontakt-knapp {
