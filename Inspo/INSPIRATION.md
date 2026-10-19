@@ -113,35 +113,115 @@ Leya Nilsson
 
 ![Bilaga 3](Bilaga%203.png)
 
-### Innehåll & Layoutinspiration (Celeste Noir – No Filter Marketing Podcast)
-* **Sajt / Varumärke:** CELESTE NOIR
-* **Tema / Koncept:** Podcast, personligt varumärke och content hub ("No Filter Marketing")
-* **Topp & Hero-sektion:**
-  - Header / Meny: HOME, SERVICES, SHOP, PORTFOLIO, PODCAST, CONTACT
-  - Tag: "NOW STREAMING"
-  - Rubrik (Display Serif): "NO FILTER MARKETING"
-  - Länkar/ikoner för podcast-plattformar (Spotify, Apple Podcasts m.fl.)
-  - Visuella element: Stämningsfullt porträttfoto kombinerat med en 3D-mockup av smartphone (visar podcast-spelaren) och AirPods
-* **Ticker / Horisontell ribbon:**
-  - Djup vinröd färg med rullande/separerade nyckelord: *Marketing Strategy · Honest Conversations · Built for Founders · What Actually Works*
-* **Intro & Värdeerbjudande:**
-  - Rubrik i serif: "The show where we talk about marketing the way nobody else does."
-  - Brödtext / Pitch: Riktar sig till ambitiösa grundare och kreatörer som vill ha konkreta strategier och ärlighet istället för generiska råd.
-  - Call to Action: Vinröd knapp "BROWSE THE EPISODES"
-* **Fokusämnen & Kärnkompetenser (Vinrött helskärmsblock):**
-  - Centrerad, pampig serif-typografi i versaler:
-    - *STRATEGY*
-    - *GROWTH MINDSET*
-    - *SOCIAL MEDIA*
-    - *PAID MEDIA*
-* **Målgruppssektion / "This is the podcast for you if:":**
-  - Vitt kort på ljus bakgrund med numrerade punkter (01, 02, 03)
-  - Porträttfoto till höger med dekorativ skrivstilstext ("Podcast")
-* **Social Proof & Statistik:**
-  - Transparent mörk banner med nyckeltal (t.ex. antal avsnitt, lyssnare och nedladdningar)
-* **Avsnittsöversikt (Grid):**
-  - Sektionen "THE EPISODES" med redaktionella bildkort i rutnät
-* **Färgpalett & Estetik:**
-  - Varm krämvit/beige bakgrund baserad på tidlös editorial design
-  - Djup oxblood/burgundy/vinröd accentfärg
-  - Elegant serif för rubriker kombinerat med ren sans-serif för läsbarhet
+### Innehåll & Layoutinspiration (Elevate Your Business Vision – Consulting & Advisory)
+* **Koncept:** Personligt varumärke, konsultverksamhet och rådgivning (*"Elevate Your Business Vision"*).
+* **Toppnavigering & Header:**
+  - Länkar: HOME · SERVICES · ABOUT · CASE STUDIES · CONTACT
+  - Centrerad och minimalistisk meny placerad i överkant med tunn linjeram.
+* **Hero-sektion:**
+  - Bakgrund: Mörk, sofistikerad chokladbrun/espresso-ton med mjuk vinjettering.
+  - Porträtt: Professionellt studiofoto av kvinna i svart kavaj, eleganta örhängen och korsade armar.
+  - Huvudrubrik (Display Serif): "ELEVATE YOUR BUSINESS VISION" i versaler.
+  - Call to Action: Sandfärgad/beige knapp med texten "BOOK CONSULTATION".
+* **Tjänstesektion ("YOUR SERVICES"):**
+  - Bakgrund: Mjuk krämvit/linnebeige med hög kontrast mot hero-sektionen.
+  - Tvåkolumnslayout:
+    - Vänster: Kvadratisk bild med skulptural marmorsfär draperad i böljande siden/textil.
+    - Höger: Rubrik "YOUR SERVICES" i serif, förklarande brödtext/ingress samt subtilt understruken textlänk "LEARN MORE".
+* **Citat- & Testimonialsektion (Social Proof):**
+  - Mörkbrun kontrastsektion som bryter av det ljusa flödet.
+  - Runt miniatyrporträtt i centrum.
+  - Kursivt kundomdöme / rekommendation.
+  - Avsändare: *Nomenk Melas · Consultant*.
+  - Diskret karusellnavigering med pilar (< >) och sidindikatorer (dots).
+* **Case Studies / Referensprojekt:**
+  - Ljus krämvit bakgrund med rubriken "CASE STUDIES" i serif-kapitäler.
+  - 3-kolumners rutnät med vertikala redaktionella kort med abstrakt skulptural konst i jordnära och varma bruna toner:
+    - *CASE STUDIE 1*
+    - *CASE STUDIE 2*
+    - *CASE STUDIE 3*
+* **Färgpalett & Designstil:**
+  - Harmonisk färgväxling mellan mörk chokladbrun/espresso och ljus krämvit/sand/linne.
+  - Lyxig, modern rådgivar- och agenturestetik (editorial high-end minimalism).
+  - Tidlös serif-typografi i versaler för sektionsrubriker kombinerat med ren, luftig sans-serif för läsbarhet.
+
+---
+
+## Bilaga 4
+
+![Bilaga 4](Bilaga%204.jpg)
+
+### Innehåll & Layoutinspiration (Maddie Fox – Social Media Management)
+* **Sajt / Varumärke:** Maddie Fox
+* **Navigationsmeny:** Services | Portfolio | About | Blog | Contact | Book A Call (CTA-knapp)
+* **Hero-sektion:**
+  - Bakgrundsfoto: Professionell miljöbild i varma beige-toner med kvinna i neutral outfit.
+  - Huvudrubrik: "Empowering your brand with expert social media management"
+  - Underrubrik: "STRATEGIC. CREATIVE. RESULTS-DRIVEN."
+  - Call to Action: "DISCOVER MY SERVICES"
+* **Om-sektion ("Hey! I'm Maddie."):**
+  - Tvåkolumnslayout med kvadratisk porträttbild till vänster och text till höger.
+  - Personlig och tillgänglig ton med länken "Read My Story".
+* **Tjänstesektion ("RANGE OF SERVICES"):**
+  - Tre bildkort i rad: Workspace (Social Media Management) | Flat Lay (Content Creation) | Graphics (Strategy & Consulting)
+* **Resultatssektion ("Strategic Social Media That Delivers Real Results"):**
+  - Tvåkolumnslayout med foto av kvinna vid laptop till vänster och rubrik + brödtext till höger.
+* **Processsektion ("Work With Me"):**
+  - Numrerade steg: 01 STRATEGY · 02 CONTENT · 03 ENGAGEMENT
+  - Estetisk dekorbild med vas och pampas-gräs till höger.
+* **Portföljsektion ("MY RECENT WORK"):**
+  - Tre horisontella kort med projektbilder: Brand Launch · Client Growth · Client Growth
+* **Färgpalett & Designstil:**
+  - Varm off-white/beige bas med svarta textelement och en dämpad guld/taupe-accentfärg på CTA-knappen.
+  - Ren, luftig sans-serif-typografi genomgående – modern och lättläst.
+  - Mjuk, redaktionell estetik med lifestyle-fotografering i neutrala jordtoner.
+  - Personlig och professionell känsla – typisk för personal branding inom social media management.
+
+---
+
+## Bilaga 5
+
+![Bilaga 5](Bilaga%205.png)
+
+### Innehåll & Layoutinspiration (Maddie Fox – Social Media Management & Personal Brand)
+* **Sajt / Varumärke:** Maddie Fox
+* **Toppbanner & Header:**
+  - Toppbanner: "NOW BOOKING NEW CLIENTS: BOOK A FREE STRATEGY CALL WITH ME"
+  - Centrerad varumärkeslogo: Maddie Fox
+  - Navigationsmeny: HOME · ABOUT · SERVICES · PORTFOLIO · CONTACT
+* **Hero-sektion:**
+  - Foto: Kvinna i svart kavaj som håller en bärbar dator (Apple).
+  - Tagg: "ELEVATE YOUR ONLINE PRESENCE"
+  - Huvudrubrik: "Empowering your brand with expert social media management"
+  - Call to Action: Sandfärgad knapp ("VIEW SERVICES").
+* **Om-sektion ("Hey! I'm Maddie."):**
+  - Underrubrik: "YOUR GO-TO GIRL FOR ALL THINGS SOCIAL MEDIA"
+  - Beskrivande text om erfarenhet inom content creation och community engagement.
+  - Två snedställda polaroidfoton på sidorna som ramar in texten.
+  - Call to Action: "MORE ABOUT ME".
+* **Tjänsteöversikt ("RANGE OF SERVICES"):**
+  - Mörk sektionsbakgrund som skapar kontrast.
+  - Tre vertikala bildkort med tydliga kategorier:
+    - *01. STRATEGY DEVELOPMENT*
+    - *02. CONTENT CREATION*
+    - *03. ADVERTISING & ANALYTICS*
+* **Värdeerbjudande ("Strategic Social Media That Delivers Real Results"):**
+  - Ljus sektion med polaroid/kort-foto av kvinna i beige kostym med laptop till vänster.
+  - Rubrik och text till höger ("WHAT I DO BEST / Strategic Social Media That Delivers Real Results").
+  - Call to Action: "ENQUIRE NOW".
+* **Process & Fördelar ("Why work with me"):**
+  - Dekorativ skrivstilsrubrik: *"Why work with me"*
+  - Numrerade fördelar och processpunkter:
+    - *01 CUSTOM STRATEGIES BUILT FOR YOU*
+    - *02 SAVE TIME AND REDUCE STRESS*
+    - *03 PROVEN RESULTS THAT DRIVE GROWTH*
+  - Miljöbild till höger med skandinavisk/minimalistisk inredning (läderfåtölj, marmorbord, torkade blommor).
+* **Portföljsektion ("THE PORTFOLIO / My Recent Work"):**
+  - Elegant serif-rubrik och ingress om att förena strategi med kreativitet.
+  - Tre referenscase i rutnät:
+    - *01. MOLLY'S BAKERY*
+    - *02. STUDIO BONNIE*
+    - *03. FLORA CLUB*
+* **Färgpalett & Designstil:**
+  - Harmonisk växling mellan mjuk krämvit/sand, mörk grafit/svart och varma taupe/jordtoner.
+  - Editorial estetik med polaroid-detaljer, rena ramar och stilren typografimix (klassisk serif för rubriker, modern sans-serif för läsbarhet och dekorativ skrivstil för personlig touch).
