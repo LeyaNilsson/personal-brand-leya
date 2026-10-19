@@ -1814,7 +1814,7 @@ h3, h4, h5 {
 .sektion-kompetenser {
     background-image:
         linear-gradient(rgba(250, 249, 247, .82), rgba(250, 249, 247, .82)),
-        url("img/kompetens-bakgrund.jpg");
+        url("img/kompetens-bakgrund.png");
     background-color: #faf9f7;
     background-size: cover;
     background-position: center;
@@ -1972,7 +1972,7 @@ html[data-theme="dark"] .sektion-kompetenser {
     color: var(--text-mork);
     background-image:
         linear-gradient(rgba(24, 35, 56, .88), rgba(24, 35, 56, .88)),
-        url("img/kompetens-bakgrund.jpg");
+        url("img/kompetens-bakgrund.png");
     background-color: var(--bas);
 }
 html[data-theme="dark"] .sektion-kompetenser .sektionrubrik,
