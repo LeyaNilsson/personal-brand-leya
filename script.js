@@ -1,63 +1,35 @@
 // ==========================================================================
-// LEYA NILSSON – Interaktiv funktionalitet (felsökt version)
+// LEYA NILSSON – Interaktiv funktionalitet
 // ==========================================================================
 
-const KONTAKT_ENDPOINT = "/api/contact";
-const KONTAKT_FORMAT = "form"; // "form" = application/x-www-form-urlencoded, "json" = application/json
-const EPOST = "leya@sandtex.se";
-
-// 0 · Färgläge – sätts direkt för att undvika blink vid laddning
-function lasTema() {
+// 0 · Färgläge
+const temavaxlare = document.getElementById("temaväxlare");
+const sparatTema = (() => {
     try {
-        const sparat = localStorage.getItem("leya-tema");
-        if (sparat === "dark" || sparat === "light") return sparat;
+        return localStorage.getItem("leya-tema");
     } catch {
-        // Lokal lagring blockerad – använd systeminställning.
+        return null;
     }
-    return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+})();
+
+function sattTema(morkt) {
+    document.documentElement.dataset.theme = morkt ? "dark" : "light";
+    if (!temavaxlare) return;
+
+    const etikett = morkt ? "Aktivera ljust läge" : "Aktivera mörkt läge";
+    temavaxlare.setAttribute("aria-label", etikett);
+    temavaxlare.setAttribute("title", etikett);
+    temavaxlare.setAttribute("aria-pressed", String(morkt));
+    temavaxlare.querySelector(".temaikon-man").hidden = morkt;
+    temavaxlare.querySelector(".temaikon-sol").hidden = !morkt;
 }
 
-document.documentElement.dataset.theme = lasTema();
+sattTema(sparatTema === "dark");
 
-function init() {
-    initTema();
-    initMobilmeny();
-    initBanner();
-    initScrollskugga();
-    initKopieraEpost();
-    initKontaktformular();
-}
-
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-} else {
-    init();
-}
-
-// --------------------------------------------------------------------------
-function initTema() {
-    // OBS: id:t måste matcha HTML exakt. Undvik å/ä/ö i id – använd t.ex. "temavaxlare".
-    const knapp = document.getElementById("temavaxlare") || document.getElementById("temaväxlare");
-    if (!knapp) return;
-
-    const ikonMane = knapp.querySelector(".temaikon-man");
-    const ikonSol = knapp.querySelector(".temaikon-sol");
-
-    function uppdatera(morkt) {
-        document.documentElement.dataset.theme = morkt ? "dark" : "light";
-        const etikett = morkt ? "Aktivera ljust läge" : "Aktivera mörkt läge";
-        knapp.setAttribute("aria-label", etikett);
-        knapp.setAttribute("title", etikett);
-        knapp.setAttribute("aria-pressed", String(morkt));
-        if (ikonMane) ikonMane.hidden = morkt;
-        if (ikonSol) ikonSol.hidden = !morkt;
-    }
-
-    uppdatera(document.documentElement.dataset.theme === "dark");
-
-    knapp.addEventListener("click", () => {
+if (temavaxlare) {
+    temavaxlare.addEventListener("click", () => {
         const morkt = document.documentElement.dataset.theme !== "dark";
-        uppdatera(morkt);
+        sattTema(morkt);
         try {
             localStorage.setItem("leya-tema", morkt ? "dark" : "light");
         } catch {
@@ -67,216 +39,140 @@ function initTema() {
 }
 
 // 1 · Hamburgarmeny (mobil)
-function initMobilmeny() {
-    const hamburgare = document.getElementById("hamburgare");
-    const mobilmeny = document.getElementById("mobilmeny");
-    if (!hamburgare || !mobilmeny) return;
+const hamburgare = document.getElementById("hamburgare");
+const mobilmeny = document.getElementById("mobilmeny");
 
-    const text = hamburgare.querySelector(".hamburgare-text");
-
-    function satt(oppet, aterstallFokus = false) {
+if (hamburgare && mobilmeny) {
+    function sattMobilmeny(oppet, aterstallFokus = false) {
         hamburgare.classList.toggle("aktiv", oppet);
         mobilmeny.classList.toggle("oppet", oppet);
         hamburgare.setAttribute("aria-expanded", String(oppet));
         hamburgare.setAttribute("aria-label", oppet ? "Stäng meny" : "Öppna meny");
         mobilmeny.setAttribute("aria-hidden", String(!oppet));
         mobilmeny.inert = !oppet;
-        if (text) text.textContent = oppet ? "Stäng" : "Meny";
+        hamburgare.querySelector(".hamburgare-text").textContent = oppet ? "Stäng" : "Meny";
         document.body.style.overflow = oppet ? "hidden" : "";
+
         if (aterstallFokus) hamburgare.focus();
     }
 
-    // Startläge: stängd (sätter inert/aria-hidden korrekt direkt)
-    satt(false);
-
     hamburgare.addEventListener("click", () => {
-        satt(!hamburgare.classList.contains("aktiv"));
+        sattMobilmeny(!hamburgare.classList.contains("aktiv"));
     });
 
-    mobilmeny.querySelectorAll(".mobilmeny-lank").forEach(lank => {
-        lank.addEventListener("click", () => satt(false));
+    // Stäng menyn när en länk väljs.
+    document.querySelectorAll(".mobilmeny-lank").forEach(lank => {
+        lank.addEventListener("click", () => {
+            sattMobilmeny(false);
+        });
     });
 
     document.addEventListener("keydown", event => {
         if (event.key === "Escape" && hamburgare.classList.contains("aktiv")) {
-            satt(false, true);
+            sattMobilmeny(false, true);
         }
     });
 
     window.addEventListener("resize", () => {
         if (window.innerWidth > 1100 && hamburgare.classList.contains("aktiv")) {
-            satt(false);
+            sattMobilmeny(false);
         }
     }, { passive: true });
 }
-
 // 2 · Stäng toppbanner
-function initBanner() {
-    const stang = document.getElementById("stang-banner");
-    const banner = document.getElementById("toppbanner");
-    if (!stang || !banner) return;
+const stangBanner = document.getElementById("stang-banner");
+const toppbanner = document.getElementById("toppbanner");
 
-    stang.addEventListener("click", () => {
-        banner.style.height = banner.offsetHeight + "px";
-        banner.style.overflow = "hidden";
-        banner.style.transition = "height 0.3s ease, padding 0.3s ease";
+if (stangBanner && toppbanner) {
+    stangBanner.addEventListener("click", () => {
+        toppbanner.style.height = toppbanner.offsetHeight + "px";
+        toppbanner.style.overflow = "hidden";
+        toppbanner.style.transition = "height 0.3s ease, padding 0.3s ease";
         requestAnimationFrame(() => {
-            banner.style.height = "0";
-            banner.style.paddingTop = "0";
-            banner.style.paddingBottom = "0";
+            toppbanner.style.height = "0";
+            toppbanner.style.paddingTop = "0";
+            toppbanner.style.paddingBottom = "0";
         });
-        setTimeout(() => banner.remove(), 350);
-    }, { once: true });
+        setTimeout(() => toppbanner.remove(), 350);
+    });
 }
 
 // 3 · Sidhuvud-skugga vid scroll
-function initScrollskugga() {
-    const sidhuvud = document.getElementById("sidhuvud");
-    if (!sidhuvud) return;
+const sidhuvud = document.getElementById("sidhuvud");
 
-    const uppdatera = () => sidhuvud.classList.toggle("scrollad", window.scrollY > 20);
-    window.addEventListener("scroll", uppdatera, { passive: true });
-    uppdatera(); // korrekt läge även om sidan laddas halvvägs ner
+if (sidhuvud) {
+    window.addEventListener("scroll", () => {
+        sidhuvud.classList.toggle("scrollad", window.scrollY > 20);
+    }, { passive: true });
 }
 
 // 4 · Kopiera e-postadress
-function initKopieraEpost() {
-    const knapp = document.getElementById("kopiera-epost");
-    if (!knapp) return;
+const kopieraKnapp = document.getElementById("kopiera-epost");
 
-    const originalText = knapp.textContent;
-    let timer;
-
-    function visaKopierad() {
-        knapp.textContent = "Kopierad! \u2713";
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            knapp.textContent = originalText;
-        }, 2500);
-    }
-
-    function reservKopiering() {
-        const el = document.createElement("textarea");
-        el.value = EPOST;
-        el.setAttribute("readonly", "");
-        el.style.position = "fixed";
-        el.style.opacity = "0";
-        document.body.appendChild(el);
-        el.select();
-        let ok = false;
-        try {
-            ok = document.execCommand("copy");
-        } catch {
-            ok = false;
-        }
-        document.body.removeChild(el);
-        return ok;
-    }
-
-    knapp.addEventListener("click", async () => {
-        try {
-            // navigator.clipboard saknas på http (ej https) – då kastas fel synkront,
-            // därför try/await i stället för .then().catch().
-            await navigator.clipboard.writeText(EPOST);
-            visaKopierad();
-        } catch {
-            if (reservKopiering()) {
-                visaKopierad();
-            } else {
-                knapp.textContent = EPOST; // visa adressen så den kan kopieras manuellt
-                clearTimeout(timer);
-                timer = setTimeout(() => {
-                    knapp.textContent = originalText;
-                }, 4000);
-            }
-        }
+if (kopieraKnapp) {
+    kopieraKnapp.addEventListener("click", () => {
+        navigator.clipboard.writeText("leya@sandtex.se").then(() => {
+            const original = kopieraKnapp.textContent;
+            kopieraKnapp.textContent = "Kopierad! \u2713";
+            setTimeout(() => {
+                kopieraKnapp.textContent = original;
+            }, 2500);
+        }).catch(() => {
+            // Fallback: skapa tillfälligt element
+            const el = document.createElement("textarea");
+            el.value = "leya@sandtex.se";
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand("copy");
+            document.body.removeChild(el);
+            kopieraKnapp.textContent = "Kopierad! \u2713";
+            setTimeout(() => {
+                kopieraKnapp.textContent = "Kopiera e-post";
+            }, 2500);
+        });
     });
 }
 
-// 5 · Kontaktformulär
-function initKontaktformular() {
-    const form = document.getElementById("kontaktform");
-    if (!form) return;
- 
+// 5 · Kontaktformulär via säker serverfunktion
+const kontaktform = document.getElementById("kontaktform");
+
+if (kontaktform) {
     const status = document.getElementById("kontaktform-status");
     const skicka = document.getElementById("kontaktform-skicka");
-    const knappText = skicka ? skicka.textContent : "Skicka meddelande";
- 
-    function visaStatus(text, state) {
-        if (!status) return;
-        status.textContent = text;
-        status.dataset.state = state;
-    }
- 
-    form.addEventListener("submit", async event => {
-        // Alltid först – hindrar omladdning/hopp till toppen.
+
+    kontaktform.addEventListener("submit", async event => {
         event.preventDefault();
- 
-        if (!form.reportValidity()) return;
-        if (skicka?.disabled) return; // förhindra dubbelskick
- 
-        // Skräppost-fälla (honeypot): om ett dolt fält "botcheck" är ifyllt är det en bot.
-        // Lägg i HTML: <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
-        const formData = new FormData(form);
-        if (formData.get("botcheck")) return;
- 
-        formData.set("access_key", WEB3FORMS_ACCESS_KEY);
-        if (!formData.get("subject")) {
-            formData.set("subject", "Nytt meddelande från webbplatsen");
-        }
-        if (!formData.get("from_name")) {
-            formData.set("from_name", formData.get("namn") || formData.get("name") || "Webbplatsen");
-        }
-        const values = Object.fromEntries(formData.entries());
- 
-        if (WEB3FORMS_ACCESS_KEY.startsWith("1bba8609-6b3b-4484-ab16-da4b0a0c3277")) {
-            visaStatus("Formuläret är inte konfigurerat än (access key saknas).", "error");
-            return;
-        }
- 
-        visaStatus("Skickar ditt meddelande…", "sending");
-        if (skicka) {
-            skicka.disabled = true;
-            skicka.setAttribute("aria-busy", "true");
-            skicka.classList.add("skickar");
-            skicka.textContent = "Skickar…";
-        }
- 
+        if (!kontaktform.reportValidity()) return;
+
+        const values = Object.fromEntries(new FormData(kontaktform).entries());
+        status.textContent = "Skickar ditt meddelande…";
+        status.dataset.state = "sending";
+        skicka.disabled = true;
+        skicka.setAttribute("aria-busy", "true");
+        skicka.classList.add("skickar");
+        skicka.textContent = "Skickar…";
+
         try {
-            const response = await fetch(WEB3FORMS_ENDPOINT, {
+            const response = await fetch("/api/contact", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values)
             });
- 
             const result = await response.json().catch(() => ({}));
- 
-            // Web3Forms svarar med { success: true/false, message: "..." }
-            if (!response.ok || !result.success) {
-                throw new Error(result.message || "Meddelandet kunde inte skickas just nu.");
-            }
- 
-            form.reset();
-            visaStatus("Tack för ditt meddelande! Jag återkommer så snart jag kan.", "success");
+            if (!response.ok) throw new Error(result.message || "Meddelandet kunde inte skickas just nu.");
+
+            kontaktform.reset();
+            status.textContent = "Tack för ditt meddelande! Jag återkommer så snart jag kan.";
+            status.dataset.state = "success";
         } catch (error) {
-            // TypeError = nätverksfel (offline, blockerad av annonsblockerare m.m.)
-            const natverk = error instanceof TypeError;
-            visaStatus(
-                natverk
-                    ? "Kunde inte nå tjänsten. Kontrollera uppkopplingen eller mejla mig direkt på " + EPOST + "."
-                    : (error.message || "Ett fel uppstod. Försök igen eller mejla mig direkt."),
-                "error"
-            );
+            status.textContent = error.message || "Ett fel uppstod. Försök igen eller mejla mig direkt.";
+            status.dataset.state = "error";
         } finally {
-            if (skicka) {
-                skicka.disabled = false;
-                skicka.removeAttribute("aria-busy");
-                skicka.classList.remove("skickar");
-                skicka.textContent = knappText;
-            }
+            skicka.disabled = false;
+            skicka.removeAttribute("aria-busy");
+            skicka.classList.remove("skickar");
+            skicka.textContent = "Skicka meddelande";
         }
     });
 }
+
