@@ -50,9 +50,6 @@ module.exports = async function handler(req, res) {
  const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
 const to = process.env.CONTACT_TO_EMAIL || "leya@sandtex.se";
-    if (!RESEND_API_KEY || !CONTACT_FROM_EMAIL) {
-        console.error("Contact email is not configured: missing Resend key or verified sender.");
-        return res.status(503).json({ message: "Formuläret är tillfälligt otillgängligt. Mejla mig gärna direkt på leya@sandtex.se." });
     }
 
     const companyLine = company ? `Företag: ${company}\n` : "";
