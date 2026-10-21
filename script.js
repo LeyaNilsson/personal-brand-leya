@@ -133,7 +133,7 @@ if (kopieraKnapp) {
     });
 }
 
-// 5 · Kontaktformulär via besökarens e-postprogram
+// 5 · Kontaktformulär via säker serverfunktion
 const kontaktform = document.getElementById("kontaktform");
 
 if (kontaktform) {
@@ -145,19 +145,34 @@ if (kontaktform) {
         if (!kontaktform.reportValidity()) return;
 
         const values = Object.fromEntries(new FormData(kontaktform).entries());
-        const companyLine = values.company ? `Företag: ${values.company}\n` : "";
-        const subject = `Kontakt från hemsidan: ${values.firstname} ${values.lastname}`;
-        const body = [
-            `Namn: ${values.firstname} ${values.lastname}`,
-            `E-post: ${values.email}`,
-            companyLine.trimEnd(),
-            "",
-            "Meddelande:",
-            values.message
-        ].filter((line, index, lines) => line !== "" || lines[index - 1] !== "").join("\n");
-        window.location.href = `mailto:leya@sandtex.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        status.textContent = "Ett e-postutkast öppnas. Skicka meddelandet från din e-postapp.";
-        status.dataset.state = "success";
+        status.textContent = "Skickar ditt meddelande…";
+        status.dataset.state = "sending";
+        skicka.disabled = true;
+        skicka.setAttribute("aria-busy", "true");
+        skicka.classList.add("skickar");
+        skicka.textContent = "Skickar…";
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(values)
+            });
+            const result = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(result.message || "Meddelandet kunde inte skickas just nu.");
+
+            kontaktform.reset();
+            status.textContent = "Tack för ditt meddelande! Jag återkommer så snart jag kan.";
+            status.dataset.state = "success";
+        } catch (error) {
+            status.textContent = error.message || "Ett fel uppstod. Försök igen eller mejla mig direkt.";
+            status.dataset.state = "error";
+        } finally {
+            skicka.disabled = false;
+            skicka.removeAttribute("aria-busy");
+            skicka.classList.remove("skickar");
+            skicka.textContent = "Skicka meddelande";
+        }
     });
 }
 
