@@ -18,5 +18,23 @@ Webbplatsen är en interaktiv och modern portfolio som presenterar personligt va
 - **CSS3** – Skräddarsytt designsystem, CSS-variabler, flexbox och CSS grid
 - **JavaScript (ES6+)** – Interaktiva funktioner och mikroanimationer
 
-## 🌐 Kör lokalt
-Öppna `index.html` direkt i en webbläsare eller starta via en lokal server (t.ex. Live Server).
+## 🌐 Kontaktformulär och driftsättning
+Kontaktformuläret skickar via `/api/contact` till HubSpots EU Forms API för portal `149565964` och formulär `e374a30c-7c1c-4e9d-9a41-73f79d2c1574`. API:t använder HubSpots standardegenskaper `firstname`, `lastname`, `email`, `company` och `message`; inga HubSpot-hemligheter eller miljövariabler behövs.
+
+API-routen kräver en Node-baserad driftsättning som stöder Vercel Functions. En statisk GitHub Pages-publicering kan visa webbplatsen men kan inte köra `/api/contact`.
+
+Kör webbplatsen lokalt via en utvecklingsserver som stöder API-routen, eller se kontaktuppgifterna på sidan för direktkontakt.
+# Kontaktformulär till HubSpot
+
+Kontaktformuläret skickar till `/api/contact`, som i sin tur använder HubSpots EU Forms API. Inga privata API-nycklar eller access tokens används i webbplatsen.
+
+API-routen använder portal-ID `149565964` och formulär-ID `e374a30c-7c1c-4e9d-9a41-73f79d2c1574`. Innan driftsättning måste du lägga till följande miljövariabler i Vercel, med fältens **interna namn** från just detta HubSpot-formulär:
+
+- `HUBSPOT_FIELD_FIRSTNAME`
+- `HUBSPOT_FIELD_LASTNAME`
+- `HUBSPOT_FIELD_EMAIL`
+- `HUBSPOT_FIELD_COMPANY`
+- `HUBSPOT_FIELD_MESSAGE`
+
+`.env.example` listar nycklarna. Fältkopplingarna, eventuellt samtycke och spam-/CAPTCHA-krav måste verifieras i HubSpot. API:t lägger inte till eller kringgår samtycke; om HubSpot kräver ett samtyckesfält behöver integrationen utökas med formulärets faktiska inställningar.
+
