@@ -229,7 +229,7 @@ function initKontaktformular() {
         }
         const values = Object.fromEntries(formData.entries());
  
-        if (WEB3FORMS_ACCESS_KEY.startsWith("DIN-")) {
+        if (WEB3FORMS_ACCESS_KEY.startsWith("1bba8609-6b3b-4484-ab16-da4b0a0c3277")) {
             visaStatus("Formuläret är inte konfigurerat än (access key saknas).", "error");
             return;
         }
