@@ -134,45 +134,53 @@ if (kopieraKnapp) {
 }
 
 // 5 · Kontaktformulär via säker serverfunktion
-const kontaktform = document.getElementById("kontaktform");
+const kontaktform = document.getElementById('kontaktform');
 
 if (kontaktform) {
-    const status = document.getElementById("kontaktform-status");
-    const skicka = document.getElementById("kontaktform-skicka");
+    const status = document.getElementById('kontaktform-status');
+    const skicka = document.getElementById('kontaktform-skicka');
 
-    kontaktform.addEventListener("submit", async event => {
+    kontaktform.addEventListener('submit', async event => {
         event.preventDefault();
+        
         if (!kontaktform.reportValidity()) return;
 
         const values = Object.fromEntries(new FormData(kontaktform).entries());
-        status.textContent = "Skickar ditt meddelande…";
-        status.dataset.state = "sending";
+
+        status.textContent = 'Skickar ditt meddelande…';
+        status.dataset.state = 'sending';
         skicka.disabled = true;
-        skicka.setAttribute("aria-busy", "true");
-        skicka.classList.add("skickar");
-        skicka.textContent = "Skickar…";
+        skicka.setAttribute('aria-busy', 'true');
+        skicka.classList.add('skickar');
+        skicka.textContent = 'Skickar…';
 
         try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(values)
             });
+
             const result = await response.json().catch(() => ({}));
-            if (!response.ok) throw new Error(result.message || "Meddelandet kunde inte skickas just nu.");
+
+            if (!response.ok) throw new Error(result.message || 'Meddelandet kunde inte skickas just nu.');
 
             kontaktform.reset();
-            status.textContent = "Tack för ditt meddelande! Jag återkommer så snart jag kan.";
-            status.dataset.state = "success";
+            status.textContent = 'Tack för ditt meddelande! Jag återkommer så snart jag kan.';
+            status.dataset.state = 'success';
+
         } catch (error) {
-            status.textContent = error.message || "Ett fel uppstod. Försök igen eller mejla mig direkt.";
-            status.dataset.state = "error";
+            status.textContent = error.message || 'Ett fel uppstod. Försök igen eller mejla mig direkt.';
+            status.dataset.state = 'error';
         } finally {
             skicka.disabled = false;
-            skicka.removeAttribute("aria-busy");
-            skicka.classList.remove("skickar");
-            skicka.textContent = "Skicka meddelande";
+            skicka.removeAttribute('aria-busy');
+            skicka.classList.remove('skickar');
+            skicka.textContent = 'Skicka meddelande';
         }
     });
 }
+
 
