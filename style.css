@@ -2458,6 +2458,19 @@ main section[id] { scroll-margin-top: calc(var(--header-height) + 1rem); }
     background: var(--accent-damp);
     border-color: var(--accent-damp);
 }
+.sektion-kontakt .kontaktform-skicka button.skickar::before {
+    content: "";
+    display: inline-block;
+    width: .9rem;
+    height: .9rem;
+    margin-right: .55rem;
+    vertical-align: -.1rem;
+    border: 2px solid currentColor;
+    border-left-color: transparent;
+    border-radius: 50%;
+    animation: kontakt-spin .8s linear infinite;
+}
+@keyframes kontakt-spin { to { transform: rotate(360deg); } }
 .sektion-kontakt .kontaktform-status { color: var(--text-mork); }
 .sektion-kontakt .kontaktform-status[data-state="error"] { color: #a12626; }
 .sektion-kontakt .kontaktform-status[data-state="success"] { color: #176b42; }
@@ -2472,6 +2485,9 @@ html[data-theme="dark"] .sektion-kontakt .kontaktform-skicka button:hover {
 }
 html[data-theme="dark"] .sektion-kontakt .kontaktform-status[data-state="error"] { color: #f0aaaa; }
 html[data-theme="dark"] .sektion-kontakt .kontaktform-status[data-state="success"] { color: #91d1ab; }
+@media (prefers-reduced-motion: reduce) {
+    .sektion-kontakt .kontaktform-skicka button.skickar::before { animation: none; }
+}
 
 @media (max-width: 1100px) {
     .sidhuvud > nav { display: none; }
