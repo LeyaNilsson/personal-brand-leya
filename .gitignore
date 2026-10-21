@@ -5,3 +5,9 @@ desktop.ini
 
 # Logs
 *.log
+
+# Local environment secrets
+.env
+.env.*
+!.env.example
+
