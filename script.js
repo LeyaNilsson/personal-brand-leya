@@ -133,7 +133,7 @@ if (kopieraKnapp) {
     });
 }
 
-// 5 · Eget kontaktformulär till HubSpot via Vercel API
+// 5 · Kontaktformulär via besökarens e-postprogram
 const kontaktform = document.getElementById("kontaktform");
 
 if (kontaktform) {
@@ -145,45 +145,19 @@ if (kontaktform) {
         if (!kontaktform.reportValidity()) return;
 
         const values = Object.fromEntries(new FormData(kontaktform).entries());
-        status.textContent = "Skickar ditt meddelande…";
-        status.dataset.state = "sending";
-        skicka.disabled = true;
-        skicka.textContent = "Skickar…";
-
-        const controller = new AbortController();
-        const timeout = window.setTimeout(() => controller.abort(), 12000);
-
-        try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    firstname: values.firstname,
-                    lastname: values.lastname,
-                    email: values.email,
-                    company: values.company,
-                    message: values.message,
-                    website: values.website,
-                    pageUri: window.location.href
-                }),
-                signal: controller.signal
-            });
-            const result = await response.json().catch(() => ({}));
-            if (!response.ok) throw new Error(result.message || "Meddelandet kunde inte skickas just nu.");
-
-            kontaktform.reset();
-            status.textContent = "Tack! Ditt meddelande har skickats.";
-            status.dataset.state = "success";
-        } catch (error) {
-            status.textContent = error.name === "AbortError"
-                ? "Det tog för lång tid att skicka. Dina uppgifter finns kvar – försök igen eller mejla mig direkt."
-                : (error.message || "Ett nätverksfel uppstod. Dina uppgifter finns kvar – försök igen eller mejla mig direkt.");
-            status.dataset.state = "error";
-        } finally {
-            window.clearTimeout(timeout);
-            skicka.disabled = false;
-            skicka.textContent = "Skicka meddelande";
-        }
+        const companyLine = values.company ? `Företag: ${values.company}\n` : "";
+        const subject = `Kontakt från hemsidan: ${values.firstname} ${values.lastname}`;
+        const body = [
+            `Namn: ${values.firstname} ${values.lastname}`,
+            `E-post: ${values.email}`,
+            companyLine.trimEnd(),
+            "",
+            "Meddelande:",
+            values.message
+        ].filter((line, index, lines) => line !== "" || lines[index - 1] !== "").join("\n");
+        window.location.href = `mailto:leya@sandtex.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        status.textContent = "Ett e-postutkast öppnas. Skicka meddelandet från din e-postapp.";
+        status.dataset.state = "success";
     });
 }
 
