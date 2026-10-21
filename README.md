@@ -19,18 +19,14 @@ Webbplatsen är en interaktiv och modern portfolio som presenterar personligt va
 - **JavaScript (ES6+)** – Interaktiva funktioner och mikroanimationer
 
 ## 🌐 Kontaktformulär
-Kontaktformuläret öppnar besökarens e-postprogram med ett färdigifyllt utkast till `leya@sandtex.se`. Besökaren skickar meddelandet från sin e-postapp. Ingen server eller extern formulärtjänst behövs.
-# Kontaktformulär till HubSpot
+Formuläret skickar meddelanden direkt till `leya@sandtex.se` via en serverfunktion (`/api/contact`) och Resend. Besökaren stannar på sidan. E-postadressen som anges i formuläret ställs in som svaradress.
 
-Kontaktformuläret skickar till `/api/contact`, som i sin tur använder HubSpots EU Forms API. Inga privata API-nycklar eller access tokens används i webbplatsen.
+### Konfiguration för produktion
+Projektets `/api`-rutt kräver en Node-serverless driftsättning, till exempel Vercel Functions. Lägg till följande miljövariabler i Vercel:
 
-API-routen använder portal-ID `149565964` och formulär-ID `e374a30c-7c1c-4e9d-9a41-73f79d2c1574`. Innan driftsättning måste du lägga till följande miljövariabler i Vercel, med fältens **interna namn** från just detta HubSpot-formulär:
+- `RESEND_API_KEY`: API-nyckel från Resend.
+- `CONTACT_FROM_EMAIL`: avsändaradress på en domän som verifierats i Resend.
+- `CONTACT_TO_EMAIL`: valfri; standard är `leya@sandtex.se`.
 
-- `HUBSPOT_FIELD_FIRSTNAME`
-- `HUBSPOT_FIELD_LASTNAME`
-- `HUBSPOT_FIELD_EMAIL`
-- `HUBSPOT_FIELD_COMPANY`
-- `HUBSPOT_FIELD_MESSAGE`
-
-`.env.example` listar nycklarna. Fältkopplingarna, eventuellt samtycke och spam-/CAPTCHA-krav måste verifieras i HubSpot. API:t lägger inte till eller kringgår samtycke; om HubSpot kräver ett samtyckesfält behöver integrationen utökas med formulärets faktiska inställningar.
+`.env.example` visar variabelnamnen. Lägg aldrig den riktiga API-nyckeln i GitHub eller frontend. Efter konfiguration behöver sajten driftsättas om. Utan nyckel och verifierad avsändardomän svarar API:t med ett tydligt fel och visar alternativ e-postlänk.
 
