@@ -49,7 +49,7 @@ module.exports = async function handler(req, res) {
 
     const { RESEND_API_KEY, CONTACT_FROM_EMAIL } = process.env;
     const to = process.env.CONTACT_TO_EMAIL || "leya@sandtex.se";
-    if (!RESEND_API_KEY || !CONTACT_FROM_EMAIL) {
+    if (!re_LuNNH83h_MfnaJAxov4EK5ujbyu9dxRhG || !CONTACT_FROM_EMAIL) {
         console.error("Contact email is not configured: missing Resend key or verified sender.");
         return res.status(503).json({ message: "Formuläret är tillfälligt otillgängligt. Mejla mig gärna direkt på leya@sandtex.se." });
     }
@@ -69,7 +69,7 @@ module.exports = async function handler(req, res) {
         const response = await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${RESEND_API_KEY}`,
+                Authorization: `Bearer ${re_LuNNH83h_MfnaJAxov4EK5ujbyu9dxRhG}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(emailPayload),
