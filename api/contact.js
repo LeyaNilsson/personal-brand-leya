@@ -74,9 +74,11 @@ const to = process.env.CONTACT_TO_EMAIL || "leya@sandtex.se";
             signal: controller.signal
         });
 
-        if (!response.ok) {
-            console.error("Resend rejected contact email with status", response.status);
-            return res.status(502).json({ message: "Mejlet kunde inte skickas just nu. Försök igen eller mejla mig direkt." });
+      if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    console.error("Resend Error Detaljer:", JSON.stringify(errorData));
+    console.error("Resend rejected contact email with status", response.status);
+    return res.status(502).json({ message: "Mejlet kunde inte skickas just nu. Försök igen eller mejla mig direkt." });
         }
         return res.status(200).json({ ok: true });
     } catch (error) {
