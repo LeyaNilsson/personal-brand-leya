@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sv">
 
 <head>
@@ -230,7 +230,7 @@
                         <h3 class="erf-titel">Hjortviken Country Club</h3>
                         <p class="erf-roll">Pool Club Servitris &amp; Värdinna</p>
                         <p class="erf-beskrivning">Ansvarar för gästupplevelse och service i en
-                            varumärkesmedveten miljö. Inspirerades av Hjortviksens personliga, professionella
+                            varumärkesmedveten miljö. Inspirerades av Hjortvikens personliga, professionella
                             och genomtänkta kommunikation.</p>
                     </article>
                     <article class="erf-kort">
@@ -259,7 +259,7 @@
                     <div class="utb-kolumn">
                         <h3 class="utb-kolumn-rubrik">Utbildningar</h3>
                         <div class="utb-rad">
-                            <div class="utb-ar">Aug 2026 – Jun 2028</div>
+                            <div class="utb-ar">Aug 2026 – Pågående</div>
                             <div class="utb-detalj">
                                 <h4>Digital Marketing Specialist</h4>
                                 <p class="utb-institution">IHM Business School, Göteborg</p>
@@ -351,10 +351,37 @@
                         <h3 class="kontakt-formular-rubrik sektionrubrik ljus kursiv-serif">Hör gärna av dig!</h3>
                         <p class="kontakt-ingress ljus-text">Fyll i formuläret så skickas ditt meddelande till mig.</p>
                     </div>
-                    <script src="https://js-eu1.hsforms.net/forms/embed/149565964.js" defer></script>
-                    <div class="hs-form-frame" data-region="eu1"
-                        data-form-id="d08cd605-0b15-4046-bdf6-28ea54158cd3"
-                        data-portal-id="149565964"></div>
+                    <form class="kontaktform" id="kontaktform" novalidate>
+                        <div class="kontaktform-falt">
+                            <label for="kontakt-fornamn">Förnamn <span aria-hidden="true">*</span></label>
+                            <input id="kontakt-fornamn" name="firstname" autocomplete="given-name" required>
+                        </div>
+                        <div class="kontaktform-falt">
+                            <label for="kontakt-efternamn">Efternamn <span aria-hidden="true">*</span></label>
+                            <input id="kontakt-efternamn" name="lastname" autocomplete="family-name" required>
+                        </div>
+                        <div class="kontaktform-falt">
+                            <label for="kontakt-epost">E-post <span aria-hidden="true">*</span></label>
+                            <input id="kontakt-epost" name="email" type="email" autocomplete="email" required>
+                        </div>
+                        <div class="kontaktform-falt">
+                            <label for="kontakt-foretag">Företag <span class="kontaktform-valfritt">(valfritt)</span></label>
+                            <input id="kontakt-foretag" name="company" autocomplete="organization">
+                        </div>
+                        <div class="kontaktform-falt kontaktform-falt-full">
+                            <label for="kontakt-meddelande">Meddelande <span aria-hidden="true">*</span></label>
+                            <textarea id="kontakt-meddelande" name="message" rows="5" required></textarea>
+                        </div>
+                        <div class="kontaktform-falt kontaktform-falt-full kontaktform-honeypot" aria-hidden="true">
+                            <label for="kontakt-webbplats">Lämna detta fält tomt</label>
+                            <input id="kontakt-webbplats" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        <div class="kontaktform-falt-full kontaktform-skicka">
+                            <button class="knapp knapp-primar" id="kontaktform-skicka" type="submit">Skicka meddelande</button>
+                            <p class="kontaktform-status" id="kontaktform-status" role="status" aria-live="polite"></p>
+                            <p class="kontaktform-alternativ">Om formuläret inte fungerar kan du skriva direkt till <a href="mailto:leya@sandtex.se">leya@sandtex.se</a>.</p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -380,3 +407,4 @@
 </body>
 
 </html>
+
