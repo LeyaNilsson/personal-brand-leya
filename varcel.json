@@ -1,0 +1,7 @@
+{
+  "env": {
+    "RESEND_API_KEY": "@resend_api_key",
+    "CONTACT_FROM_EMAIL": "@contact_from_email",
+    "CONTACT_TO_EMAIL": "@contact_to_email"
+  }
+}
