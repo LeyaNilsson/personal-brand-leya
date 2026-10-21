@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 15903)
-Total output lines: 2566
-
 /* ==========================================================================
    LEYA NILSSON – DIGITAL MARKETING SPECIALIST
    Redesign inspirerad av Bilaga 5 (Maddie Fox) och Bilaga 1 (Atelier Soleil)
@@ -1450,7 +1447,112 @@ h3, h4, h5 {
     margin: 0 0 1.25rem;
     color: #faf9f7;
     font-family: var(--font-serif) !important;
-    font…903 tokens truncated…top: 0;
+    font-size: clamp(4.25rem, 10vw, 8rem);
+    font-weight: 500;
+    letter-spacing: .055em;
+    line-height: .96;
+    text-transform: uppercase;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, .48);
+}
+.hero-knappar { justify-content: center; }
+.hero-cta { padding: .82rem 1.8rem; border-radius: 3px; }
+
+@media (max-width: 1100px) {
+    .sidhuvud { grid-template-columns: 1fr auto; gap: 1rem; }
+    .sidhuvud > nav { display: none; }
+    .hamburgare { display: flex; }
+    .mobilmeny { display: flex; top: 94px; }
+}
+
+@media (max-width: 768px) {
+    .sidhuvud { min-height: 82px; padding: .8rem 1.1rem; }
+    .logo-namn { font-size: 1.4rem; }
+    .roll { font-size: .78rem; }
+    #header-kontakt-knapp { display: inline-flex; padding: .58rem .85rem; font-size: .88rem; }
+    .header-hoger { gap: .7rem; }
+    .hamburgare { display: flex; }
+    .mobilmeny { top: 82px; }
+    .hero {
+        height: min(760px, calc(100svh - 82px));
+        min-height: 620px;
+    }
+    .hero-rubrik { font-size: clamp(3.25rem, 13vw, 5.5rem); }
+    .hero-overtitel { font-size: .98rem; letter-spacing: .09em; }
+}
+
+@media (max-width: 420px) {
+    .sidhuvud { padding-inline: .85rem; }
+    .logo-namn { font-size: 1.22rem; }
+    .roll { font-size: .7rem; }
+    #header-kontakt-knapp { padding: .5rem .65rem; font-size: .82rem; }
+    .header-hoger { gap: .45rem; }
+    .hero-rubrik { font-size: clamp(2.8rem, 12.5vw, 3.5rem); }
+}
+
+/* Håll helheten ljus och låt blått fungera som accent */
+.om-citat-box {
+    background: #f4f2ee;
+    color: #1e1e1e;
+    border-left: 2px solid #3e527a;
+    transform: none;
+}
+.citat-text { color: #3e527a; }
+.citat-sign { color: #4a4a4a; }
+
+.sektion-kompetenser {
+    background: #f4f2ee;
+    color: #1e1e1e;
+    border-top: 1px solid var(--bas-kant);
+    border-bottom: 1px solid var(--bas-kant);
+}
+.sektion-kompetenser .etiketttext-ljus,
+.sektion-kompetenser .sektionrubrik.ljus,
+.sektion-kompetenser .sektion-ingress.ljus,
+.kompetens-innehall h3 { color: #3e527a; }
+.sektion-kompetenser .sektion-ingress.ljus { opacity: 1; }
+.kompetens-lista { border-top-color: rgba(62, 82, 122, .18); }
+.kompetens-rad { border-bottom-color: rgba(62, 82, 122, .18); }
+.kompetens-rad:hover { background: rgba(62, 82, 122, .045); }
+.kompetens-nummer { color: #3e527a; }
+.kompetens-innehall p { color: #4a4a4a; }
+
+.sektion-kontakt {
+    background: #f4f2ee;
+    color: #1e1e1e;
+    border-top: 1px solid var(--bas-kant);
+}
+.sektion-kontakt .etiketttext-ljus,
+.sektion-kontakt .sektionrubrik.ljus,
+.sektion-kontakt .kontakt-info-varde { color: #3e527a; }
+.sektion-kontakt .ljus-text,
+.sektion-kontakt .kontakt-info-etikett { color: #4a4a4a; }
+.sektion-kontakt .kontakt-info-lista { border-top-color: rgba(62, 82, 122, .2); }
+.sektion-kontakt .kontakt-info-rad { color: #3e527a; border-color: rgba(62, 82, 122, .2); }
+.sektion-kontakt a.kontakt-info-rad:hover { color: #3e527a; }
+.sektion-kontakt .knapp-ghost-ljus { color: #3e527a; border-color: rgba(62, 82, 122, .55); }
+.sektion-kontakt .knapp-ghost-ljus:hover { color: #faf9f7; background: #3e527a; border-color: #3e527a; }
+.kontakt-citat { border-left-color: rgba(62, 82, 122, .4); }
+.kontakt-citat p { color: #4a4a4a; }
+.kontakt-formular { border-top-color: rgba(62, 82, 122, .22); }
+
+.sidfot {
+    background: #faf9f7;
+    color: #4a4a4a;
+    border-top: 1px solid var(--bas-kant);
+}
+.sidfot-namn { color: #3e527a; }
+.sidfot-roll,
+.sidfot-nav a,
+.sidfot-copy { color: #4a4a4a; }
+.sidfot-nav a:hover { color: #3e527a; }
+
+.kontakt-formular {
+    grid-area: formular;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    padding-top: 0;
+    border-top: 0;
 }
 .kontakt-formular-intro,
 .kontaktform { grid-column: 1 / -1; }
@@ -2291,6 +2393,85 @@ main section[id] { scroll-margin-top: calc(var(--header-height) + 1rem); }
 .utb-grid > *,
 .kontakt-inner > * { min-width: 0; }
 .erf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* Kontaktsektionen följer sajtens befintliga basfärger i båda temana. */
+.sektion-kontakt {
+    background: var(--bas-djupare);
+    color: var(--text-mork);
+    border-top: 1px solid var(--bas-kant);
+}
+.sektion-kontakt .sektionrubrik.ljus,
+.sektion-kontakt .etiketttext-ljus,
+.sektion-kontakt .kontakt-info-varde,
+.sektion-kontakt .kontakt-info-rad,
+.sektion-kontakt .kontakt-formular-rubrik {
+    color: var(--accent-damp);
+}
+.sektion-kontakt .ljus-text,
+.sektion-kontakt .kontakt-info-etikett,
+.sektion-kontakt .kontakt-ingress {
+    color: var(--text-medel);
+}
+.sektion-kontakt .kontakt-info-lista,
+.sektion-kontakt .kontakt-info-rad,
+.sektion-kontakt .kontakt-formular {
+    border-color: var(--bas-kant);
+}
+.sektion-kontakt a.kontakt-info-rad:hover { color: var(--accent-damp); }
+.sektion-kontakt .knapp-ljus {
+    color: var(--accent-damp);
+    background: var(--bas);
+    border: 1px solid var(--bas-kant);
+}
+.sektion-kontakt .knapp-ghost-ljus {
+    color: var(--text-mork);
+    border-color: var(--bas-kant);
+}
+.sektion-kontakt .knapp-ghost-ljus:hover {
+    color: var(--accent-damp);
+    background: var(--bas);
+    border-color: var(--bas-kant);
+}
+.sektion-kontakt .kontaktform-falt label { color: var(--accent-damp); }
+.sektion-kontakt .kontaktform-valfritt { color: var(--text-damp); }
+.sektion-kontakt .kontaktform-falt input,
+.sektion-kontakt .kontaktform-falt textarea {
+    color: var(--text-mork);
+    background: var(--bas);
+    border-color: var(--bas-kant);
+    border-radius: 3px;
+}
+.sektion-kontakt .kontaktform-falt input::placeholder,
+.sektion-kontakt .kontaktform-falt textarea::placeholder { color: var(--text-damp); opacity: 1; }
+.sektion-kontakt .kontaktform-falt input:focus-visible,
+.sektion-kontakt .kontaktform-falt textarea:focus-visible {
+    outline-color: var(--accent-damp);
+}
+.sektion-kontakt .kontaktform-skicka button {
+    color: var(--bas);
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+}
+.sektion-kontakt .kontaktform-skicka button:hover {
+    color: var(--bas);
+    background: var(--accent-damp);
+    border-color: var(--accent-damp);
+}
+.sektion-kontakt .kontaktform-status { color: var(--text-mork); }
+.sektion-kontakt .kontaktform-status[data-state="error"] { color: #a12626; }
+.sektion-kontakt .kontaktform-status[data-state="success"] { color: #176b42; }
+.sektion-kontakt .kontaktform-alternativ { color: var(--text-medel); }
+.sektion-kontakt .kontaktform-alternativ a { color: var(--accent-damp); }
+
+html[data-theme="dark"] .sektion-kontakt .kontaktform-skicka button {
+    color: #faf9f7;
+}
+html[data-theme="dark"] .sektion-kontakt .kontaktform-skicka button:hover {
+    color: #182338;
+}
+html[data-theme="dark"] .sektion-kontakt .kontaktform-status[data-state="error"] { color: #f0aaaa; }
+html[data-theme="dark"] .sektion-kontakt .kontaktform-status[data-state="success"] { color: #91d1ab; }
 
 @media (max-width: 1100px) {
     .sidhuvud > nav { display: none; }
