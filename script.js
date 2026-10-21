@@ -132,8 +132,8 @@ if (kopieraKnapp) {
         });
     });
 }
-
-// 5 · Kontaktformulär via säker serverfunktion
+document.addEventListener('DOMContentLoaded', () => {
+    // 5 · Kontaktformulär via säker serverfunktion
 const kontaktform = document.getElementById('kontaktform');
 
 if (kontaktform) {
@@ -181,6 +181,8 @@ if (kontaktform) {
             skicka.textContent = 'Skicka meddelande';
         }
     });
+
+
 }
 
 
