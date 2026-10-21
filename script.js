@@ -197,26 +197,43 @@ function initKopieraEpost() {
 function initKontaktformular() {
     const form = document.getElementById("kontaktform");
     if (!form) return;
-
+ 
     const status = document.getElementById("kontaktform-status");
     const skicka = document.getElementById("kontaktform-skicka");
     const knappText = skicka ? skicka.textContent : "Skicka meddelande";
-
+ 
     function visaStatus(text, state) {
         if (!status) return;
         status.textContent = text;
         status.dataset.state = state;
     }
-
+ 
     form.addEventListener("submit", async event => {
         // Alltid först – hindrar omladdning/hopp till toppen.
         event.preventDefault();
-
+ 
         if (!form.reportValidity()) return;
         if (skicka?.disabled) return; // förhindra dubbelskick
-
-        const values = Object.fromEntries(new FormData(form).entries());
-
+ 
+        // Skräppost-fälla (honeypot): om ett dolt fält "botcheck" är ifyllt är det en bot.
+        // Lägg i HTML: <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+        const formData = new FormData(form);
+        if (formData.get("botcheck")) return;
+ 
+        formData.set("access_key", WEB3FORMS_ACCESS_KEY);
+        if (!formData.get("subject")) {
+            formData.set("subject", "Nytt meddelande från webbplatsen");
+        }
+        if (!formData.get("from_name")) {
+            formData.set("from_name", formData.get("namn") || formData.get("name") || "Webbplatsen");
+        }
+        const values = Object.fromEntries(formData.entries());
+ 
+        if (WEB3FORMS_ACCESS_KEY.startsWith("DIN-")) {
+            visaStatus("Formuläret är inte konfigurerat än (access key saknas).", "error");
+            return;
+        }
+ 
         visaStatus("Skickar ditt meddelande…", "sending");
         if (skicka) {
             skicka.disabled = true;
@@ -224,36 +241,32 @@ function initKontaktformular() {
             skicka.classList.add("skickar");
             skicka.textContent = "Skickar…";
         }
-
+ 
         try {
-            const json = KONTAKT_FORMAT === "json";
-            const response = await fetch(KONTAKT_ENDPOINT, {
+            const response = await fetch(WEB3FORMS_ENDPOINT, {
                 method: "POST",
                 headers: {
-                    "Content-Type": json
-                        ? "application/json"
-                        : "application/x-www-form-urlencoded",
+                    "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: json
-                    ? JSON.stringify(values)
-                    : new URLSearchParams(values).toString()
+                body: JSON.stringify(values)
             });
-
+ 
             const result = await response.json().catch(() => ({}));
-
-            if (!response.ok) {
+ 
+            // Web3Forms svarar med { success: true/false, message: "..." }
+            if (!response.ok || !result.success) {
                 throw new Error(result.message || "Meddelandet kunde inte skickas just nu.");
             }
-
+ 
             form.reset();
             visaStatus("Tack för ditt meddelande! Jag återkommer så snart jag kan.", "success");
         } catch (error) {
-            // TypeError = nätverksfel/CORS/ingen server
+            // TypeError = nätverksfel (offline, blockerad av annonsblockerare m.m.)
             const natverk = error instanceof TypeError;
             visaStatus(
                 natverk
-                    ? "Kunde inte nå servern. Kontrollera uppkopplingen eller mejla mig direkt."
+                    ? "Kunde inte nå tjänsten. Kontrollera uppkopplingen eller mejla mig direkt på " + EPOST + "."
                     : (error.message || "Ett fel uppstod. Försök igen eller mejla mig direkt."),
                 "error"
             );
