@@ -30,7 +30,6 @@ module.exports = async function handler(req, res) {
     }
 
     const body = req.body && typeof req.body === "object" ? req.body : {};
-    // A filled honeypot is silently accepted so bots do not learn the spam check.
     if (clean(body.website, 200)) return res.status(200).json({ ok: true });
 
     const ip = clean(req.headers["x-real-ip"] || req.headers["x-forwarded-for"]?.split(",")[0] || "unknown", 80);
@@ -43,14 +42,13 @@ module.exports = async function handler(req, res) {
     const email = clean(body.email, 254);
     const company = clean(body.company, 200);
     const message = clean(body.message, 5000);
-    if (!firstname || !lastname || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!firstname || !lastname || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+\$/.test(email)) {
         return res.status(400).json({ message: "Kontrollera att obligatoriska fält är ifyllda och att e-postadressen är giltig." });
     }
 
- const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
-const to = process.env.CONTACT_TO_EMAIL || "leya@sandtex.se";
-    }
+    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+    const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
+    const to = process.env.CONTACT_TO_EMAIL || "leya@sandtex.se";
 
     const companyLine = company ? `Företag: ${company}\n` : "";
     const emailPayload = {
@@ -74,11 +72,11 @@ const to = process.env.CONTACT_TO_EMAIL || "leya@sandtex.se";
             signal: controller.signal
         });
 
-      if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    console.error("Resend Error Detaljer:", JSON.stringify(errorData));
-    console.error("Resend rejected contact email with status", response.status);
-    return res.status(502).json({ message: "Mejlet kunde inte skickas just nu. Försök igen eller mejla mig direkt." });
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            console.error("Resend Error Detaljer:", JSON.stringify(errorData));
+            console.error("Resend rejected contact email with status", response.status);
+            return res.status(502).json({ message: "Mejlet kunde inte skickas just nu. Försök igen eller mejla mig direkt." });
         }
         return res.status(200).json({ ok: true });
     } catch (error) {
