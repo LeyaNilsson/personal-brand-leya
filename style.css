@@ -828,6 +828,7 @@ nav a:hover::after {
 .projekt-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
     gap: 1.5rem;
     margin-top: 2rem;
     text-align: left;
@@ -836,10 +837,16 @@ nav a:hover::after {
 .projektkort {
     min-width: 0;
     overflow: hidden;
-    background: var(--bas-djupare);
-    border: 1px solid var(--bas-kant);
+    padding: clamp(0.65rem, 1.4vw, 1rem);
+    background: #3e527a;
+    border: 1px solid #3e527a;
     box-shadow: var(--skugga);
     transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.projektkort-soaply {
+    background: #faf9f7;
+    border-color: #e8e4dd;
 }
 
 .projektbild-lank {
@@ -847,7 +854,15 @@ nav a:hover::after {
     display: block;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: #fff;
+    background: var(--bas-djupare);
+}
+
+.projektbild-lank::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: linear-gradient(180deg, transparent 48%, rgba(16, 20, 29, 0.58) 100%);
+    pointer-events: none;
 }
 
 .projektbild {
@@ -859,45 +874,38 @@ nav a:hover::after {
 
 .projektbild-prisbevis {
     object-fit: contain;
-    padding: 0.5rem;
+    padding: 0.65rem;
+    background: var(--bas-djupare);
 }
 
-.projektbild-logotyp {
+.projektbild-rubrik {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
-    width: clamp(6rem, 20%, 9rem);
-    height: auto;
-    padding: 0.45rem 0.6rem;
-    background: rgba(250, 249, 247, 0.94);
+    z-index: 1;
+    right: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(1rem, 3vw, 2rem);
+    left: clamp(1rem, 3vw, 2rem);
+    color: #faf9f7;
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 4vw, 3.25rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-align: center;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.42);
+    pointer-events: none;
 }
 
 .projektkort-innehall {
-    padding: clamp(1.25rem, 3vw, 2rem);
+    padding: clamp(1rem, 2.5vw, 1.65rem) clamp(0.35rem, 1.1vw, 0.9rem) clamp(0.35rem, 1vw, 0.75rem);
 }
 
-.projektkort-rubrik {
-    margin-bottom: 0.65rem;
-    font-family: var(--font-serif);
-    font-size: clamp(1.65rem, 2.5vw, 2.1rem);
-    font-weight: 400;
-    line-height: 1.1;
-}
-
-.projektkort-rubrik a {
-    color: var(--accent);
-    text-decoration: none;
-}
-
-.projektkort-rubrik a:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.16em;
-}
-
-.projektkort-rubrik a:focus-visible,
 .projektbild-lank:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: -3px;
+}
+
+.projektkort-soaply .projektbild-lank:focus-visible {
+    outline-color: var(--bas);
 }
 
 .projektkort-text {
@@ -905,6 +913,87 @@ nav a:hover::after {
     font-family: var(--font-sans);
     font-size: 0.95rem;
     line-height: 1.7;
+}
+
+.projektkort-soaply .projektkort-text {
+    color: var(--text-medel);
+}
+
+.projektkort:not(.projektkort-soaply) .projektkort-text {
+    color: rgba(250, 249, 247, 0.9);
+}
+
+.projekt-ide {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(250, 249, 247, 0.3);
+    color: #faf9f7;
+    font-family: var(--font-sans);
+}
+
+.projekt-ide summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 44px;
+    padding: 0.65rem 0;
+    color: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+}
+
+.projekt-ide summary::-webkit-details-marker {
+    display: none;
+}
+
+.projekt-ide summary::after {
+    content: "+";
+    flex: 0 0 auto;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.projekt-ide[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.projekt-ide summary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.projekt-ide-text {
+    padding: 0 0 0.75rem;
+    color: rgba(250, 249, 247, 0.9);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.projektkort-soaply .projekt-ide {
+    border-top-color: rgba(62, 82, 122, 0.3);
+    color: #3e527a;
+}
+
+.projektkort-soaply .projekt-ide-text {
+    color: var(--text-medel);
+}
+
+.projekt-ide[open] .projekt-ide-text {
+    animation: projekt-ide-in 0.22s ease-out;
+}
+
+@keyframes projekt-ide-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .projekt-ide summary::after { transition: none; }
+    .projekt-ide[open] .projekt-ide-text { animation: none; }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -2186,14 +2275,25 @@ html[data-theme="dark"] .erf-grid {
 }
 html[data-theme="dark"] .erf-kort { background: var(--bas); }
 html[data-theme="dark"] .projektkort {
-    background: var(--bas-djupare);
-    border-color: var(--bas-kant);
+    background: #3e527a;
+    border-color: #3e527a;
 }
-html[data-theme="dark"] .erf-projekt .erf-underrubrik,
-html[data-theme="dark"] .projektkort-rubrik a {
+html[data-theme="dark"] .projektkort-soaply {
+    background: #faf9f7;
+    border-color: #e8e4dd;
+}
+html[data-theme="dark"] .projektbild-rubrik {
+    color: #faf9f7;
+}
+html[data-theme="dark"] .erf-projekt .erf-underrubrik {
     color: var(--accent-ljus);
 }
-html[data-theme="dark"] .projektkort-text { color: var(--text-medel); }
+html[data-theme="dark"] .projektkort-soaply .projektkort-text { color: #4a4a4a; }
+html[data-theme="dark"] .projektkort:not(.projektkort-soaply) .projektkort-text { color: rgba(250, 249, 247, 0.9); }
+html[data-theme="dark"] .projekt-ide { color: #faf9f7; border-top-color: rgba(250, 249, 247, 0.3); }
+html[data-theme="dark"] .projekt-ide-text { color: rgba(250, 249, 247, 0.9); }
+html[data-theme="dark"] .projektkort-soaply .projekt-ide { color: #3e527a; border-top-color: rgba(62, 82, 122, 0.3); }
+html[data-theme="dark"] .projektkort-soaply .projekt-ide-text { color: #4a4a4a; }
 html[data-theme="dark"] .erf-kort:hover,
 html[data-theme="dark"] .utb-rad:hover { background: var(--bas-djupare); }
 html[data-theme="dark"] .erf-kategori,
