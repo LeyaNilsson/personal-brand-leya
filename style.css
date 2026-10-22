@@ -780,6 +780,148 @@ nav a:hover::after {
     z-index: 1;
 }
 
+.sektion-erfarenhet .sektion-header {
+    margin-bottom: 1.5rem;
+}
+
+.sektion-erfarenhet .erf-huvudrubrik {
+    color: var(--accent);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 0;
+}
+
+.erf-intro,
+.erf-projekt {
+    text-align: center;
+}
+
+.erf-intro {
+    margin-bottom: 2rem;
+}
+
+.erf-projekt {
+    margin-top: 2rem;
+}
+
+.erf-underrubrik {
+    color: var(--accent);
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+}
+
+.sektion-erfarenhet .sektion-ingress {
+    max-width: 65ch;
+    margin-inline: auto;
+    white-space: normal;
+}
+
+.projekt-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.projektkort {
+    min-width: 0;
+    overflow: hidden;
+    background: var(--bas-djupare);
+    border: 1px solid var(--bas-kant);
+    box-shadow: var(--skugga);
+    transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.projektbild-lank {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #fff;
+}
+
+.projektbild {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.projektbild-prisbevis {
+    object-fit: contain;
+    padding: 0.5rem;
+}
+
+.projektbild-logotyp {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: clamp(6rem, 20%, 9rem);
+    height: auto;
+    padding: 0.45rem 0.6rem;
+    background: rgba(250, 249, 247, 0.94);
+}
+
+.projektkort-innehall {
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.projektkort-rubrik {
+    margin-bottom: 0.65rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.65rem, 2.5vw, 2.1rem);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.projektkort-rubrik a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.projektkort-rubrik a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+}
+
+.projektkort-rubrik a:focus-visible,
+.projektbild-lank:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -3px;
+}
+
+.projektkort-text {
+    color: var(--text-medel);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .projektkort:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--skugga-djup);
+    }
+}
+
+
+html[data-theme="dark"] .projektkort {
+    background: var(--bas-djupare);
+    border-color: var(--bas-kant);
+}
+html[data-theme="dark"] .erf-projekt .erf-underrubrik,
+html[data-theme="dark"] .projektkort-rubrik a {
+    color: var(--accent-ljus);
+}
+html[data-theme="dark"] .projektkort-text { color: var(--text-medel); }
+
+@media (max-width: 768px) {
+    .projekt-grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+}
+
 /* ==========================================================================
    14 · ERFARENHET
    ========================================================================== */
