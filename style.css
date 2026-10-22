@@ -780,6 +780,13 @@ nav a:hover::after {
     z-index: 1;
 }
 
+/* ==========================================================================
+   14 · ERFARENHET
+   ========================================================================== */
+.sektion-erfarenhet {
+    background-color: var(--bas);
+}
+
 .sektion-erfarenhet .sektion-header {
     margin-bottom: 1.5rem;
 }
@@ -905,28 +912,6 @@ nav a:hover::after {
         transform: translateY(-4px);
         box-shadow: var(--skugga-djup);
     }
-}
-
-
-html[data-theme="dark"] .projektkort {
-    background: var(--bas-djupare);
-    border-color: var(--bas-kant);
-}
-html[data-theme="dark"] .erf-projekt .erf-underrubrik,
-html[data-theme="dark"] .projektkort-rubrik a {
-    color: var(--accent-ljus);
-}
-html[data-theme="dark"] .projektkort-text { color: var(--text-medel); }
-
-@media (max-width: 768px) {
-    .projekt-grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
-}
-
-/* ==========================================================================
-   14 · ERFARENHET
-   ========================================================================== */
-.sektion-erfarenhet {
-    background-color: var(--bas);
 }
 
 .erf-grid {
@@ -1358,6 +1343,11 @@ a.kontakt-info-rad:hover {
 
     .erf-grid {
         grid-template-columns: 1fr;
+    }
+
+    .projekt-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
     }
 
     .erf-kort-header {
@@ -2195,6 +2185,15 @@ html[data-theme="dark"] .erf-grid {
     border-color: var(--bas-kant);
 }
 html[data-theme="dark"] .erf-kort { background: var(--bas); }
+html[data-theme="dark"] .projektkort {
+    background: var(--bas-djupare);
+    border-color: var(--bas-kant);
+}
+html[data-theme="dark"] .erf-projekt .erf-underrubrik,
+html[data-theme="dark"] .projektkort-rubrik a {
+    color: var(--accent-ljus);
+}
+html[data-theme="dark"] .projektkort-text { color: var(--text-medel); }
 html[data-theme="dark"] .erf-kort:hover,
 html[data-theme="dark"] .utb-rad:hover { background: var(--bas-djupare); }
 html[data-theme="dark"] .erf-kategori,
@@ -2536,6 +2535,15 @@ main section[id] { scroll-margin-top: calc(var(--header-height) + 1rem); }
 .kontakt-inner > * { min-width: 0; }
 .erf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+/* Behåll en läsbar enkolumnslayout för erfarenhetskorten även efter
+   den senare generella rutnätsregeln ovan. */
+@media (max-width: 768px) {
+    .erf-grid { grid-template-columns: minmax(0, 1fr); }
+    .erf-kort { padding: clamp(1.25rem, 4vw, 2rem); }
+    .erf-kort-header { flex-direction: column; gap: .35rem; }
+    .erf-period { white-space: normal; }
+}
+
 /* Kontaktsektionen följer sajtens befintliga basfärger i båda temana. */
 .sektion-kontakt {
     background: var(--bas-djupare);
@@ -2799,14 +2807,4 @@ html[data-theme="dark"] .sektion-kontakt .kontaktform-status[data-state="success
 
     .mobilmeny nav ul { gap: .5rem; }
     .mobilmeny-lank { font-size: clamp(1.4rem, 6vh, 2rem); }
-}
-
-
-/* Behåll en läsbar enkolumnslayout för erfarenhetskorten även efter
-   den senare generella rutnätsregeln ovan. */
-@media (max-width: 768px) {
-    .erf-grid { grid-template-columns: minmax(0, 1fr); }
-    .erf-kort { padding: clamp(1.25rem, 4vw, 2rem); }
-    .erf-kort-header { flex-direction: column; gap: .35rem; }
-    .erf-period { white-space: normal; }
 }
