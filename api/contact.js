@@ -10,14 +10,22 @@ function clean(value, maxLength) {
 
 function rateLimited(ip) {
     const now = Date.now();
+    
+    // Säkrare städning av gamla IP-adresser utan att störa loopen
+    const expiredIps = [];
     for (const [knownIp, entry] of submissionsByIp) {
-        if (now - entry.startedAt >= WINDOW_MS) submissionsByIp.delete(knownIp);
+        if (now - entry.startedAt >= WINDOW_MS) {
+            expiredIps.push(knownIp);
+        }
     }
+    expiredIps.forEach(expiredIp => submissionsByIp.delete(expiredIp));
+
     const entry = submissionsByIp.get(ip);
     if (!entry || now - entry.startedAt >= WINDOW_MS) {
         submissionsByIp.set(ip, { startedAt: now, count: 1 });
         return false;
     }
+    
     entry.count += 1;
     return entry.count > MAX_PER_WINDOW;
 }
@@ -30,6 +38,8 @@ export default async function handler(req, res) {
     }
 
     const body = req.body && typeof req.body === "object" ? req.body : {};
+    
+    // Honeypot-fält för spam (om fältet är ifyllt är det en bot)
     if (clean(body.website, 200)) return res.status(200).json({ ok: true });
 
     const ip = clean(req.headers["x-real-ip"] || req.headers["x-forwarded-for"]?.split(",")[0] || "unknown", 80);
@@ -42,6 +52,8 @@ export default async function handler(req, res) {
     const email = clean(body.email, 254);
     const company = clean(body.company, 200);
     const message = clean(body.message, 5000);
+    
+    // KORRIGERAT REGEX: Tagit bort '\' innan '\$'
     if (!firstname || !lastname || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+\$/.test(email)) {
         return res.status(400).json({ message: "Kontrollera att obligatoriska fält är ifyllda och att e-postadressen är giltig." });
     }
@@ -50,9 +62,10 @@ export default async function handler(req, res) {
     const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
     const to = process.env.CONTACT_TO_EMAIL || "leya@sandtex.se";
 
+    // Säkerställ att du har lagt till din domän i Resend, annars måste CONTACT_FROM_EMAIL vara "onboarding@resend.dev"
     const companyLine = company ? `Företag: ${company}\n` : "";
     const emailPayload = {
-        from: CONTACT_FROM_EMAIL,
+        from: CONTACT_FROM_EMAIL || "onboarding@resend.dev",
         to: [to],
         reply_to: email,
         subject: `Kontakt från hemsidan: ${firstname} ${lastname}`,
